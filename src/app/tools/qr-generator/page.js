@@ -79,8 +79,13 @@ const SMART = {
     build: (f) => (f.smsNum?.trim() ? `SMSTO:${f.smsNum.trim()}:${f.smsMsg || ""}` : ""),
   },
   Location: {
-    fields: [["place", "Place, address or lat,lng", "Taj Mahal, Agra"]],
-    build: (f) => (f.place?.trim() ? `https://www.google.com/maps?q=${enc(f.place.trim())}` : ""),
+    fields: [["place", "Search a place, school, shop or address", "Jayshree Periwal Global School"]],
+    build: (f) =>
+      f.latlng
+        ? `https://www.google.com/maps/search/?api=1&query=${f.latlng}`
+        : f.place?.trim()
+          ? `https://www.google.com/maps/search/?api=1&query=${enc(f.place.trim())}`
+          : "",
   },
 };
 
@@ -191,7 +196,37 @@ export default function QRMaker() {
   const [ready, setReady] = useState(false);
   const canvasRef = useRef(null);
 
+  const [places, setPlaces] = useState([]);
+
   const content = tab === "smart" ? SMART[smartType].build(fields) : text.trim();
+
+  // free place search (Photon / OpenStreetMap); skipped once a suggestion is picked
+  useEffect(() => {
+    const q = fields.place?.trim();
+    if (tab !== "smart" || smartType !== "Location" || fields.latlng || !q || q.length < 3) {
+      setPlaces([]);
+      return;
+    }
+    const ctrl = new AbortController();
+    const t = setTimeout(() => {
+      fetch(`https://photon.komoot.io/api/?q=${enc(q)}&limit=6`, { signal: ctrl.signal })
+        .then((r) => r.json())
+        .then((d) =>
+          setPlaces(
+            (d.features || []).map((f) => {
+              const p = f.properties;
+              const label = [...new Set([p.name, p.street, p.district, p.city, p.state, p.country].filter(Boolean))].join(", ");
+              return { label, latlng: `${f.geometry.coordinates[1]},${f.geometry.coordinates[0]}` };
+            })
+          )
+        )
+        .catch(() => {});
+    }, 400);
+    return () => {
+      clearTimeout(t);
+      ctrl.abort();
+    };
+  }, [fields.place, fields.latlng, tab, smartType]);
 
   useEffect(() => {
     if (!content || !canvasRef.current) {
@@ -306,8 +341,28 @@ export default function QRMaker() {
                     className={inputCls}
                     placeholder={ph}
                     value={fields[key] || ""}
-                    onChange={(e) => setFields((p) => ({ ...p, [key]: e.target.value }))}
+                    onChange={(e) =>
+                      setFields((p) => ({ ...p, [key]: e.target.value, ...(key === "place" && { latlng: "" }) }))
+                    }
                   />
+                  {key === "place" && places.length > 0 && (
+                    <ul className="-mt-3 mb-4 rounded-xl border border-border bg-background overflow-hidden">
+                      {places.map((p) => (
+                        <li key={p.latlng}>
+                          <button
+                            type="button"
+                            onClick={() => setFields((f) => ({ ...f, place: p.label, latlng: p.latlng }))}
+                            className="w-full text-left px-4 py-2.5 text-sm hover:bg-primary/10 border-b border-border last:border-0"
+                          >
+                            {p.label}
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  {key === "place" && fields.latlng && (
+                    <p className="-mt-3 mb-4 text-xs text-green-600">Exact location selected — QR opens it in Google Maps.</p>
+                  )}
                 </div>
               ))}
             </>
