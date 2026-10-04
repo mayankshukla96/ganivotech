@@ -180,6 +180,7 @@ export default function Page() {
         <section>
           <h2 className={h2}>More Free Tools and Guides</h2>
           <ul className="space-y-2 text-primary underline">
+            <li><Link href="/tools/bulk-qr-code-generator">Bulk QR code generator: make hundreds of QR codes from an Excel list</Link></li>
             <li><Link href="/tools/vcf-maker">VCF Maker: turn a spreadsheet of contacts into one file</Link></li>
             <li><Link href="/tools/pdf-maker">PDF Maker: convert images and text files to PDF</Link></li>
             <li><Link href="/extensions/qr-studio">Ganivotech QR Studio: free Chrome extension to make and scan QR codes</Link></li>

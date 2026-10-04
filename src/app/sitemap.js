@@ -2,7 +2,7 @@ import { GUIDES, SITE, TYPE_PAGES } from "@/lib/qr-content";
 import { PDF_GUIDES } from "@/lib/pdf-content";
 import { VCF_GUIDES } from "@/lib/vcf-content";
 import { EXTENSIONS } from "@/lib/extensions";
-import { SIZES } from "@/lib/tools-content";
+import { BULK_TYPES, SIZES } from "@/lib/tools-content";
 
 const d = (s) => new Date(s);
 
@@ -19,6 +19,8 @@ export default function sitemap() {
     ["/tools/compress-to-exact-size", "2026-10-04", 0.9],
     ...Object.keys(SIZES).map((s) => [`/tools/compress-to-exact-size/${s}`, "2026-10-04", 0.8]),
     ["/tools/ocr-to-excel-word", "2026-10-04", 0.9],
+    ["/tools/bulk-qr-code-generator", "2026-10-04", 0.9],
+    ...Object.keys(BULK_TYPES).map((s) => [`/tools/bulk-qr-code-generator/${s}`, "2026-10-04", 0.8]),
     ["/extensions", "2026-10-04", 0.8],
     ...Object.keys(EXTENSIONS).map((s) => [`/extensions/${s}`, "2026-10-04", 0.7]),
     ["/blog", "2026-10-04", 0.6],
