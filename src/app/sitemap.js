@@ -1,4 +1,6 @@
 import { GUIDES, SITE, TYPE_PAGES } from "@/lib/qr-content";
+import { PDF_GUIDES } from "@/lib/pdf-content";
+import { VCF_GUIDES } from "@/lib/vcf-content";
 
 const d = (s) => new Date(s);
 
@@ -7,11 +9,15 @@ export default function sitemap() {
     ["/", "2026-10-04", 1],
     ["/tools/qr-generator", "2026-10-04", 1],
     ...Object.keys(TYPE_PAGES).map((t) => [`/tools/qr-generator/${t}`, "2026-10-04", 0.8]),
-    ["/tools/vcf-maker", "2026-10-04", 0.7],
-    ["/tools/pdf-maker", "2026-10-04", 0.7],
+    ["/tools/vcf-maker", "2026-10-04", 0.8],
+    ["/tools/pdf-maker", "2026-10-04", 0.8],
     ["/blog", "2026-10-04", 0.6],
     ["/blog/qr-code", "2026-10-04", 0.7],
     ...Object.entries(GUIDES).map(([s, g]) => [`/blog/qr-code/${s}`, g.date, 0.7]),
+    ["/blog/pdf-maker", "2026-10-04", 0.7],
+    ...Object.entries(PDF_GUIDES).map(([s, g]) => [`/blog/pdf-maker/${s}`, g.date, 0.7]),
+    ["/blog/vcf-maker", "2026-10-04", 0.7],
+    ...Object.entries(VCF_GUIDES).map(([s, g]) => [`/blog/vcf-maker/${s}`, g.date, 0.7]),
     ["/services", "2026-10-04", 0.6],
     ["/about", "2026-10-04", 0.5],
     ["/contact", "2026-10-04", 0.5],
