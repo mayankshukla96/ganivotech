@@ -1,6 +1,10 @@
 import pg from "pg";
 
-const url = () => process.env.DATABASE_URL || process.env.POSTGRES_URL;
+// Vercel's Neon integration may add a custom prefix (e.g. STORAGE_DATABASE_URL), so accept those too
+const url = () =>
+  process.env.DATABASE_URL ||
+  process.env.POSTGRES_URL ||
+  process.env[Object.keys(process.env).find((k) => /(^|_)(DATABASE|POSTGRES)_URL$/.test(k)) || ""];
 
 export const dbConfigured = () => !!url();
 
