@@ -37,6 +37,11 @@ export default function Page() {
           It does not set cookies and does not store your IP address. To count unique visitors it creates a one-way hash from your IP address and browser details that changes every day, so a visitor cannot be recognised across days or identified personally. Visits by known crawlers are ignored.
         </p>
 
+        <h2 className={h2}>Ganivotech QR Studio browser extension</h2>
+        <p className={p}>
+          The extension creates and scans QR codes entirely on your device. It does not collect browsing history and sends nothing to us while you use it. The only data it sends is what you choose to type into the Suggest tab (your idea and an optional name), which we store so we can read your idea. It reads the address and title of the current tab only when you open the extension, to make a QR code of it. The extension&apos;s own links to ganivotech.com carry a tag so we can count visits that come from it.
+        </p>
+
         <h2 className={h2}>Your choices</h2>
         <p className={p}>You can ask us to delete any message you sent us by contacting us through the <a href="/contact" className="text-primary underline">contact page</a>.</p>
       </div>

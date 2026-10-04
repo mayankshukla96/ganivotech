@@ -22,7 +22,7 @@ async function load(range) {
   const w = "ts >= $1 AND ts < $2";
   const p = [range.from, range.to];
   const fmt = { hour: "YYYY-MM-DD HH24:00", day: "YYYY-MM-DD", month: "YYYY-MM" }[range.gran];
-  const [totals, bounce, series, pages, entries, exits, flows, sources, mediums, countries, cities, devices, browsers, systems, recent] = await Promise.all([
+  const [totals, bounce, series, pages, entries, exits, flows, sources, mediums, countries, cities, devices, browsers, systems, recent, ideas] = await Promise.all([
     q(`SELECT count(*)::int views, count(DISTINCT vid)::int visitors FROM pageviews WHERE ${w}`, p),
     q(`SELECT count(*)::int n FROM (SELECT vid FROM pageviews WHERE ${w} GROUP BY vid HAVING count(*) = 1) t`, p),
     q(`SELECT to_char(date_trunc('${range.gran}', ts AT TIME ZONE 'Asia/Kolkata'), '${fmt}') k, count(*)::int views, count(DISTINCT vid)::int visitors FROM pageviews WHERE ${w} GROUP BY 1`, p),
@@ -39,8 +39,9 @@ async function load(range) {
     q(`SELECT browser k, count(*)::int n FROM pageviews WHERE ${w} GROUP BY 1 ORDER BY n DESC`, p),
     q(`SELECT os k, count(*)::int n FROM pageviews WHERE ${w} GROUP BY 1 ORDER BY n DESC`, p),
     q(`SELECT ts, path, source, medium, country, region, city, device, browser FROM pageviews WHERE ${w} ORDER BY ts DESC, id DESC LIMIT 40`, p),
+    q("SELECT ts, name, idea, source FROM suggestions ORDER BY ts DESC, id DESC LIMIT 20"),
   ]);
-  return { totals: totals[0], bounce: bounce[0].n, series, pages, entries, exits, flows, sources, mediums, countries, cities, devices, browsers, systems, recent };
+  return { totals: totals[0], bounce: bounce[0].n, series, pages, entries, exits, flows, sources, mediums, countries, cities, devices, browsers, systems, recent, ideas };
 }
 
 function Card({ title, children, className = "" }) {
@@ -286,6 +287,21 @@ export default async function Page({ searchParams }) {
           <BarList total={views} rows={d.systems.map((r) => ({ label: r.k, value: r.n }))} />
         </Card>
       </div>
+
+      <Card title="Ideas suggested by users (latest 20, all time)" className="mt-6">
+        {d.ideas.length ? (
+          <ul className="space-y-3">
+            {d.ideas.map((s, i) => (
+              <li key={i} className="text-sm border-b border-border/60 pb-3 last:border-0 last:pb-0">
+                <p className="whitespace-pre-wrap">{s.idea}</p>
+                <p className="mt-1 text-xs text-muted">{s.name} &bull; {s.source} &bull; {fmtIST(s.ts)}</p>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-sm text-muted">No suggestions yet. They arrive from the Chrome extension&apos;s Suggest tab.</p>
+        )}
+      </Card>
 
       <Card title="Recent activity (latest 40 page views)" className="mt-6">
         <div className="overflow-x-auto">

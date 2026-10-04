@@ -30,7 +30,15 @@ export async function ensureSchema() {
           device TEXT, browser TEXT, os TEXT,
           vid TEXT NOT NULL
         );
-        CREATE INDEX IF NOT EXISTS pageviews_ts_idx ON pageviews (ts);`
+        CREATE INDEX IF NOT EXISTS pageviews_ts_idx ON pageviews (ts);
+        CREATE TABLE IF NOT EXISTS suggestions (
+          id BIGSERIAL PRIMARY KEY,
+          ts TIMESTAMPTZ NOT NULL DEFAULT now(),
+          name TEXT,
+          idea TEXT NOT NULL,
+          source TEXT,
+          vid TEXT
+        );`
       )
       .catch((e) => {
         g.__gtSchema = null;
