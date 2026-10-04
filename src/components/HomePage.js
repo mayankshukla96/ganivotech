@@ -267,6 +267,29 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Premium products */}
+      <section className="py-16 sm:py-20 bg-surface border-y border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-3xl border border-border bg-background p-8 sm:p-12 grid lg:grid-cols-[1.3fr_1fr] gap-8 items-center">
+            <div>
+              <span className="inline-block px-3 py-1 mb-4 rounded-full bg-primary/10 text-primary text-xs font-semibold">New: Premium Products</span>
+              <h2 className="text-3xl font-bold mb-3">SellerSync OS</h2>
+              <p className="font-semibold mb-2">Sell everywhere. Manage everything. One inventory.</p>
+              <p className="text-muted leading-relaxed mb-6">A multichannel stock and order system for sellers on Amazon, Flipkart and Meesho. One central stock figure, shared with every channel. Pilot sellers welcome.</p>
+              <div className="flex flex-wrap gap-3">
+                <Link href="/products/sellersync-os" className="px-6 py-3 rounded-xl gradient-bg-orange text-white font-semibold hover:opacity-90 transition-opacity">See SellerSync OS</Link>
+                <Link href="/products" className="px-6 py-3 rounded-xl border border-border font-semibold hover:border-primary hover:text-primary transition-colors">All premium products</Link>
+              </div>
+            </div>
+            <div className="rounded-2xl border border-border bg-surface p-5 text-center" aria-hidden="true">
+              <p className="text-xs font-semibold tracking-widest text-muted mb-2">CENTRAL STOCK</p>
+              <p className="text-5xl font-bold text-primary-dark mb-3">11</p>
+              <div className="grid grid-cols-3 gap-2 text-xs">{["Amazon", "Flipkart", "Meesho"].map((m) => <div key={m} className="rounded-lg border border-border bg-background py-2"><span className="block text-muted">{m}</span><strong>11</strong></div>)}</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-20 sm:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

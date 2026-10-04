@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 const contactInfo = [
@@ -37,6 +38,29 @@ const contactInfo = [
 ];
 
 export default function Contact() {
+  const [f, setF] = useState({ name: "", email: "", subject: "", service: "", message: "", website: "" });
+  const [st, setSt] = useState({ busy: false, ok: false, err: "" });
+  const on = (k) => (e) => setF((o) => ({ ...o, [k]: e.target.value }));
+
+  async function submit(e) {
+    e.preventDefault();
+    setSt({ busy: true, ok: false, err: "" });
+    try {
+      const message = [f.subject && `Subject: ${f.subject}`, f.service && `Service: ${f.service}`, f.message].filter(Boolean).join("\n");
+      const r = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ product: "contact", name: f.name, email: f.email, message, website: f.website }),
+      });
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok || !j.ok) throw new Error(j.error || "Could not send. Please try again.");
+      setSt({ busy: false, ok: true, err: "" });
+      setF({ name: "", email: "", subject: "", service: "", message: "", website: "" });
+    } catch (x) {
+      setSt({ busy: false, ok: false, err: x.message });
+    }
+  }
+
   return (
     <>
       {/* Hero */}
@@ -74,44 +98,24 @@ export default function Contact() {
             >
               <div className="p-8 rounded-2xl border border-border bg-surface">
                 <h2 className="text-2xl font-bold mb-6">Send us a Message</h2>
-                <form className="space-y-5">
+                <form onSubmit={submit} className="space-y-5" noValidate>
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-sm font-medium mb-2">
-                        Full Name
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="John Doe"
-                        className="w-full px-4 py-3 rounded-xl border border-border bg-background text-sm focus:outline-none focus:border-primary transition-colors"
-                      />
+                      <label htmlFor="c-name" className="block text-sm font-medium mb-2">Full Name *</label>
+                      <input id="c-name" type="text" required autoComplete="name" value={f.name} onChange={on("name")} placeholder="John Doe" className="w-full px-4 py-3 rounded-xl border border-border bg-background text-sm focus:outline-none focus:border-primary transition-colors" />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium mb-2">
-                        Email
-                      </label>
-                      <input
-                        type="email"
-                        placeholder="john@example.com"
-                        className="w-full px-4 py-3 rounded-xl border border-border bg-background text-sm focus:outline-none focus:border-primary transition-colors"
-                      />
+                      <label htmlFor="c-email" className="block text-sm font-medium mb-2">Email *</label>
+                      <input id="c-email" type="email" required autoComplete="email" value={f.email} onChange={on("email")} placeholder="john@example.com" className="w-full px-4 py-3 rounded-xl border border-border bg-background text-sm focus:outline-none focus:border-primary transition-colors" />
                     </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">
-                      Subject
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="How can we help?"
-                      className="w-full px-4 py-3 rounded-xl border border-border bg-background text-sm focus:outline-none focus:border-primary transition-colors"
-                    />
+                    <label htmlFor="c-subject" className="block text-sm font-medium mb-2">Subject</label>
+                    <input id="c-subject" type="text" value={f.subject} onChange={on("subject")} placeholder="How can we help?" className="w-full px-4 py-3 rounded-xl border border-border bg-background text-sm focus:outline-none focus:border-primary transition-colors" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">
-                      Service Interested In
-                    </label>
-                    <select className="w-full px-4 py-3 rounded-xl border border-border bg-background text-sm focus:outline-none focus:border-primary transition-colors">
+                    <label htmlFor="c-service" className="block text-sm font-medium mb-2">Service Interested In</label>
+                    <select id="c-service" value={f.service} onChange={on("service")} className="w-full px-4 py-3 rounded-xl border border-border bg-background text-sm focus:outline-none focus:border-primary transition-colors">
                       <option value="">Select a service</option>
                       <option value="web">Web Development</option>
                       <option value="app">App Development</option>
@@ -122,20 +126,18 @@ export default function Contact() {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">
-                      Message
-                    </label>
-                    <textarea
-                      rows={5}
-                      placeholder="Tell us about your project..."
-                      className="w-full px-4 py-3 rounded-xl border border-border bg-background text-sm focus:outline-none focus:border-primary transition-colors resize-none"
-                    />
+                    <label htmlFor="c-message" className="block text-sm font-medium mb-2">Message *</label>
+                    <textarea id="c-message" rows={5} required value={f.message} onChange={on("message")} placeholder="Tell us about your project..." className="w-full px-4 py-3 rounded-xl border border-border bg-background text-sm focus:outline-none focus:border-primary transition-colors resize-none" />
                   </div>
+                  <div aria-hidden="true" className="absolute -left-[9999px]"><label>Website<input tabIndex={-1} autoComplete="off" value={f.website} onChange={on("website")} /></label></div>
+                  {st.err && <p role="alert" className="text-sm text-red-600">{st.err}</p>}
+                  {st.ok && <p role="status" className="text-sm font-semibold text-green-700">Thank you! We have your message and will reply soon.</p>}
                   <button
                     type="submit"
-                    className="w-full px-8 py-3.5 rounded-xl gradient-bg-orange text-white font-semibold hover:opacity-90 transition-opacity"
+                    disabled={st.busy}
+                    className="w-full px-8 py-3.5 rounded-xl gradient-bg-orange text-white font-semibold hover:opacity-90 transition-opacity disabled:opacity-50"
                   >
-                    Send Message
+                    {st.busy ? "Sending..." : "Send Message"}
                   </button>
                 </form>
               </div>

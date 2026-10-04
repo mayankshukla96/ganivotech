@@ -38,6 +38,18 @@ export async function ensureSchema() {
           idea TEXT NOT NULL,
           source TEXT,
           vid TEXT
+        );
+        CREATE TABLE IF NOT EXISTS leads (
+          id BIGSERIAL PRIMARY KEY,
+          ts TIMESTAMPTZ NOT NULL DEFAULT now(),
+          product TEXT NOT NULL,
+          name TEXT NOT NULL,
+          phone TEXT,
+          email TEXT,
+          business TEXT,
+          details TEXT,
+          message TEXT,
+          vid TEXT
         );`
       )
       .catch((e) => {

@@ -22,7 +22,7 @@ async function load(range) {
   const w = "ts >= $1 AND ts < $2";
   const p = [range.from, range.to];
   const fmt = { hour: "YYYY-MM-DD HH24:00", day: "YYYY-MM-DD", month: "YYYY-MM" }[range.gran];
-  const [totals, bounce, series, pages, entries, exits, flows, sources, mediums, countries, cities, devices, browsers, systems, recent, ideas] = await Promise.all([
+  const [totals, bounce, series, pages, entries, exits, flows, sources, mediums, countries, cities, devices, browsers, systems, recent, ideas, leads] = await Promise.all([
     q(`SELECT count(*)::int views, count(DISTINCT vid)::int visitors FROM pageviews WHERE ${w}`, p),
     q(`SELECT count(*)::int n FROM (SELECT vid FROM pageviews WHERE ${w} GROUP BY vid HAVING count(*) = 1) t`, p),
     q(`SELECT to_char(date_trunc('${range.gran}', ts AT TIME ZONE 'Asia/Kolkata'), '${fmt}') k, count(*)::int views, count(DISTINCT vid)::int visitors FROM pageviews WHERE ${w} GROUP BY 1`, p),
@@ -40,8 +40,9 @@ async function load(range) {
     q(`SELECT os k, count(*)::int n FROM pageviews WHERE ${w} GROUP BY 1 ORDER BY n DESC`, p),
     q(`SELECT ts, path, source, medium, country, region, city, device, browser FROM pageviews WHERE ${w} ORDER BY ts DESC, id DESC LIMIT 40`, p),
     q("SELECT ts, name, idea, source FROM suggestions ORDER BY ts DESC, id DESC LIMIT 20"),
+    q("SELECT ts, product, name, phone, email, business, details, message FROM leads ORDER BY ts DESC, id DESC LIMIT 50"),
   ]);
-  return { totals: totals[0], bounce: bounce[0].n, series, pages, entries, exits, flows, sources, mediums, countries, cities, devices, browsers, systems, recent, ideas };
+  return { totals: totals[0], bounce: bounce[0].n, series, pages, entries, exits, flows, sources, mediums, countries, cities, devices, browsers, systems, recent, ideas, leads };
 }
 
 function Card({ title, children, className = "" }) {
@@ -287,6 +288,32 @@ export default async function Page({ searchParams }) {
           <BarList total={views} rows={d.systems.map((r) => ({ label: r.k, value: r.n }))} />
         </Card>
       </div>
+
+      <Card title={`Leads and messages (latest 50, all time): ${d.leads.length} shown`} className="mt-6">
+        {d.leads.length ? (
+          <ul className="space-y-4">
+            {d.leads.map((l, i) => (
+              <li key={i} className="text-sm border-b border-border/60 pb-4 last:border-0 last:pb-0">
+                <div className="flex flex-wrap items-center gap-2 mb-1">
+                  <span className={`px-2 py-0.5 rounded text-[11px] font-semibold ${l.product === "sellersync-os" ? "bg-primary/10 text-primary" : "bg-border text-muted"}`}>{l.product === "sellersync-os" ? "SellerSync pilot" : "Contact form"}</span>
+                  <strong>{l.name}</strong>
+                  {l.business && <span className="text-muted">&bull; {l.business}</span>}
+                  <span className="text-xs text-muted">{fmtIST(l.ts)}</span>
+                </div>
+                <p className="text-xs">
+                  {l.phone && <a href={`tel:${l.phone.replace(/[^\d+]/g, "")}`} className="text-primary underline mr-3">{l.phone}</a>}
+                  {l.phone && <a href={`https://wa.me/${l.phone.replace(/\D/g, "")}`} target="_blank" rel="noopener noreferrer" className="text-primary underline mr-3">WhatsApp</a>}
+                  {l.email && <a href={`mailto:${l.email}`} className="text-primary underline">{l.email}</a>}
+                </p>
+                {l.details && <p className="text-xs text-muted mt-1">{l.details}</p>}
+                {l.message && <p className="mt-1 whitespace-pre-wrap">{l.message}</p>}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-sm text-muted">No leads yet. SellerSync pilot applications and Contact page messages arrive here.</p>
+        )}
+      </Card>
 
       <Card title="Ideas suggested by users (latest 20, all time)" className="mt-6">
         {d.ideas.length ? (

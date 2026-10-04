@@ -5,21 +5,37 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TOOLS } from "@/lib/tools-content";
+import { PRODUCT_LIST } from "@/lib/products";
 
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
   { href: "/blog", label: "Blog" },
-  { label: "Free Tools", menu: true },
+  { label: "Free Tools", menu: "tools" },
+  { label: "Premium", menu: "premium" },
   { href: "/extensions", label: "Extensions" },
   { href: "/contact", label: "Contact" },
 ];
 
 const linkCls = "text-sm font-medium text-muted hover:text-primary transition-colors";
 
-function ToolsMenu() {
+const MENUS = {
+  tools: {
+    label: "Free Tools",
+    items: TOOLS.map((t) => ({ href: t.href, name: t.name, blurb: t.blurb })),
+    all: { href: "/tools", label: "See all free tools" },
+  },
+  premium: {
+    label: "Premium",
+    items: PRODUCT_LIST.map((p) => ({ href: p.href, name: p.name, blurb: p.tagline })),
+    all: { href: "/products", label: "See all premium products" },
+  },
+};
+
+function DropMenu({ menu }) {
   const [open, setOpen] = useState(false);
+  const m = MENUS[menu];
   return (
     <div
       className="relative"
@@ -29,19 +45,19 @@ function ToolsMenu() {
       onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget)) setOpen(false); }}
     >
       <button type="button" aria-expanded={open} aria-haspopup="true" onClick={() => setOpen((o) => !o)} className={`${linkCls} flex items-center gap-1`}>
-        Free Tools
+        {m.label}
         <svg className={`w-3.5 h-3.5 transition-transform ${open ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
       </button>
       {open && (
         <div className="absolute left-0 top-full pt-3 w-80">
           <div className="rounded-xl border border-border bg-background shadow-lg p-2">
-            {TOOLS.map((t) => (
+            {m.items.map((t) => (
               <Link key={t.href} href={t.href} onClick={() => setOpen(false)} className="block rounded-lg px-3 py-2 hover:bg-primary/10">
                 <span className="block text-sm font-semibold">{t.name}</span>
                 <span className="block text-xs text-muted">{t.blurb}</span>
               </Link>
             ))}
-            <Link href="/tools" onClick={() => setOpen(false)} className="block rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-primary/10">See all free tools</Link>
+            <Link href={m.all.href} onClick={() => setOpen(false)} className="block rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-primary/10">{m.all.label}</Link>
           </div>
         </div>
       )}
@@ -84,7 +100,7 @@ export default function Navbar() {
           <div className="hidden xl:flex items-center gap-6">
             {links.map((link) =>
               link.menu ? (
-                <ToolsMenu key="tools" />
+                <DropMenu key={link.menu} menu={link.menu} />
               ) : (
                 <Link key={link.href} href={link.href} className={linkCls}>
                   {link.label}
@@ -141,10 +157,10 @@ export default function Navbar() {
             <div className="px-4 py-4 space-y-3">
               {links.map((link) =>
                 link.menu ? (
-                  <div key="tools" className="py-1">
-                    <Link href="/tools" onClick={() => setMobileOpen(false)} className="block text-sm font-semibold text-foreground py-2">Free Tools</Link>
+                  <div key={link.menu} className="py-1">
+                    <Link href={MENUS[link.menu].all.href} onClick={() => setMobileOpen(false)} className="block text-sm font-semibold text-foreground py-2">{MENUS[link.menu].label}</Link>
                     <div className="ml-3 border-l border-border pl-3 space-y-1">
-                      {TOOLS.map((t) => (
+                      {MENUS[link.menu].items.map((t) => (
                         <Link key={t.href} href={t.href} onClick={() => setMobileOpen(false)} className="block text-sm text-muted hover:text-primary transition-colors py-1.5">
                           {t.name}
                         </Link>
