@@ -23,6 +23,7 @@ export default function sitemap() {
     ...Object.keys(BULK_TYPES).map((s) => [`/tools/bulk-qr-code-generator/${s}`, "2026-10-04", 0.8]),
     ["/products", "2026-10-04", 0.8],
     ["/products/sellersync-os", "2026-10-04", 0.9],
+    ["/products/digital-desk", "2026-10-05", 0.9],
     ["/extensions", "2026-10-04", 0.8],
     ...Object.keys(EXTENSIONS).map((s) => [`/extensions/${s}`, "2026-10-04", 0.7]),
     ["/blog", "2026-10-04", 0.6],

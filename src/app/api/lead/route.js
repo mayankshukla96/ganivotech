@@ -3,7 +3,7 @@ import { dbConfigured, q } from "@/lib/analytics-db";
 import { istDateString } from "@/lib/analytics-utils";
 
 // Stores enquiries (SellerSync pilot applications, contact form) for the owner dashboard.
-const PRODUCTS = new Set(["sellersync-os", "contact"]);
+const PRODUCTS = new Set(["sellersync-os", "digital-desk", "contact"]);
 const sameSite = (o) => !!o && (/^https:\/\/(www\.)?ganivotech\.com$/.test(o) || /^http:\/\/localhost(:\d+)?$/.test(o) || /^https:\/\/[a-z0-9-]+\.vercel\.app$/.test(o));
 
 const clip = (v, n) => String(v ?? "").trim().slice(0, n);

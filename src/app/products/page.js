@@ -4,7 +4,7 @@ import { PRODUCT_LIST } from "@/lib/products";
 import { SITE } from "@/lib/qr-content";
 
 const TITLE = "Premium Products | GanivoTech";
-const DESC = "Software products from Ganivotech for growing businesses. Start with SellerSync OS, a multichannel inventory system for Amazon, Flipkart and Meesho sellers.";
+const DESC = "Products and managed plans from Ganivotech: SellerSync OS for marketplace sellers and Digital Desk, a managed IT and digital plan for small businesses.";
 
 export const metadata = {
   title: { absolute: TITLE },
@@ -30,7 +30,7 @@ export default function Page() {
           <Breadcrumbs crumbs={[["Home", "/"], ["Premium Products", "/products"]]} />
           <header className="text-center mb-10">
             <h1 className="text-4xl sm:text-5xl font-bold mb-4">Premium <span className="gradient-text">Products</span></h1>
-            <p className="text-muted max-w-2xl mx-auto">Software we build and run ourselves, for businesses that have outgrown spreadsheets. Our free tools and Chrome extensions stay free.</p>
+            <p className="text-muted max-w-2xl mx-auto">Software and managed plans from Ganivotech, for businesses that have outgrown spreadsheets and ad-hoc IT help. Our free tools and Chrome extensions stay free.</p>
           </header>
 
           <ul className="grid sm:grid-cols-2 gap-5 mb-10">

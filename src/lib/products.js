@@ -7,6 +7,13 @@ export const PRODUCTS = {
     status: "Pilot open",
     href: "/products/sellersync-os",
   },
+  "digital-desk": {
+    name: "Digital Desk",
+    tagline: "Your IT and digital department, for a fixed monthly fee.",
+    blurb: "A managed plan where Ganivotech sets up and looks after your website, email, WhatsApp, security and software, so you don't have to.",
+    status: "Taking first clients",
+    href: "/products/digital-desk",
+  },
 };
 
 export const PRODUCT_LIST = Object.entries(PRODUCTS).map(([slug, p]) => ({ slug, ...p }));

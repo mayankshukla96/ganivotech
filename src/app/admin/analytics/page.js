@@ -295,7 +295,7 @@ export default async function Page({ searchParams }) {
             {d.leads.map((l, i) => (
               <li key={i} className="text-sm border-b border-border/60 pb-4 last:border-0 last:pb-0">
                 <div className="flex flex-wrap items-center gap-2 mb-1">
-                  <span className={`px-2 py-0.5 rounded text-[11px] font-semibold ${l.product === "sellersync-os" ? "bg-primary/10 text-primary" : "bg-border text-muted"}`}>{l.product === "sellersync-os" ? "SellerSync pilot" : "Contact form"}</span>
+                  <span className={`px-2 py-0.5 rounded text-[11px] font-semibold ${l.product === "contact" ? "bg-border text-muted" : "bg-primary/10 text-primary"}`}>{{ "sellersync-os": "SellerSync pilot", "digital-desk": "Digital Desk", contact: "Contact form" }[l.product] || l.product}</span>
                   <strong>{l.name}</strong>
                   {l.business && <span className="text-muted">&bull; {l.business}</span>}
                   <span className="text-xs text-muted">{fmtIST(l.ts)}</span>
