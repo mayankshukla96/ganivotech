@@ -11,6 +11,7 @@ const navLinks = [
   { href: "/services", label: "Services" },
   { href: "/blog", label: "Blog" },
   { href: "/worksheet", label: "Worksheet" },
+  { href: "/tools/qr-generator", label: "QR Code" },
   { href: "/contact", label: "Contact" },
 ];
 
