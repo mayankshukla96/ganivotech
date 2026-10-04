@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { JsonLd } from "@/components/seo";
+import Analytics from "@/components/Analytics";
 import { SITE } from "@/lib/qr-content";
 
 const geistSans = Geist({
@@ -42,6 +43,7 @@ export default function RootLayout({ children }) {
         {orgSchema.map((s) => (
           <JsonLd key={s["@type"]} data={s} />
         ))}
+        <Analytics />
         <Navbar />
         <main className="flex-1 pt-16">{children}</main>
         <Footer />

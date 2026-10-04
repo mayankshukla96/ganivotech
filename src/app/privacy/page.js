@@ -30,7 +30,12 @@ export default function Page() {
         </p>
 
         <h2 className={h2}>Cookies and analytics</h2>
-        <p className={p}>We do not currently use advertising cookies or analytics scripts. If that changes, we will update this page.</p>
+        <p className={p}>
+          We do not use advertising cookies or third-party analytics. We run our own simple, privacy-friendly page-view counter to understand how many people visit and which pages are useful. For each page view it records the page, the site you came from (for example Google or direct), your approximate area (country, region and city, derived by our host from your IP address), and your device type, browser and operating system.
+        </p>
+        <p className={p}>
+          It does not set cookies and does not store your IP address. To count unique visitors it creates a one-way hash from your IP address and browser details that changes every day, so a visitor cannot be recognised across days or identified personally. Visits by known crawlers are ignored.
+        </p>
 
         <h2 className={h2}>Your choices</h2>
         <p className={p}>You can ask us to delete any message you sent us by contacting us through the <a href="/contact" className="text-primary underline">contact page</a>.</p>
