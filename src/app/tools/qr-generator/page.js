@@ -11,7 +11,78 @@ const TABS = [
   { id: "smart", label: "Smart QR" },
 ];
 
-const SMART_TYPES = ["WhatsApp", "WiFi", "Email"];
+const enc = encodeURIComponent;
+
+// each type: input fields [key, label, placeholder] and a builder that returns "" until required fields are filled
+const SMART = {
+  Contact: {
+    fields: [
+      ["name", "Full name", "Rahul Sharma"],
+      ["phone", "Phone", "+919876543210"],
+      ["email", "Email", "rahul@example.com"],
+      ["org", "Company", "Ganivotech"],
+      ["site", "Website", "https://ganivotech.com"],
+    ],
+    build: (f) => {
+      if (!f.name?.trim()) return "";
+      const [first, ...rest] = f.name.trim().split(" ");
+      return [
+        "BEGIN:VCARD", "VERSION:3.0",
+        `N:${rest.join(" ")};${first};;;`, `FN:${f.name.trim()}`,
+        f.org && `ORG:${f.org}`, f.phone && `TEL;TYPE=CELL:${f.phone}`,
+        f.email && `EMAIL:${f.email}`, f.site && `URL:${f.site}`, "END:VCARD",
+      ].filter(Boolean).join("\n");
+    },
+  },
+  WhatsApp: {
+    fields: [
+      ["wa", "WhatsApp number (with country code)", "919876543210"],
+      ["message", "Pre-filled message (optional)", "Hi, I want to know more"],
+    ],
+    build: (f) =>
+      f.wa?.replace(/\D/g, "")
+        ? `https://wa.me/${f.wa.replace(/\D/g, "")}${f.message ? `?text=${enc(f.message)}` : ""}`
+        : "",
+  },
+  UPI: {
+    fields: [
+      ["vpa", "UPI ID", "name@okbank"],
+      ["payee", "Payee name (optional)", "Ganivotech"],
+      ["amount", "Amount in INR (optional)", "499"],
+      ["note", "Note (optional)", "Invoice 101"],
+    ],
+    build: (f) =>
+      f.vpa?.trim()
+        ? `upi://pay?pa=${f.vpa.trim()}${f.payee ? `&pn=${enc(f.payee)}` : ""}${f.amount ? `&am=${f.amount}` : ""}&cu=INR${f.note ? `&tn=${enc(f.note)}` : ""}`
+        : "",
+  },
+  WiFi: {
+    fields: [
+      ["ssid", "WiFi name (SSID)", "MyHomeWiFi"],
+      ["pass", "Password (empty for open network)", "password"],
+    ],
+    build: (f) =>
+      f.ssid?.trim() ? `WIFI:T:${f.pass ? "WPA" : "nopass"};S:${f.ssid};P:${f.pass || ""};;` : "",
+  },
+  Email: {
+    fields: [
+      ["to", "Email address", "hello@example.com"],
+      ["subject", "Subject (optional)", "Enquiry"],
+    ],
+    build: (f) => (f.to?.trim() ? `mailto:${f.to.trim()}${f.subject ? `?subject=${enc(f.subject)}` : ""}` : ""),
+  },
+  SMS: {
+    fields: [
+      ["smsNum", "Phone number", "+919876543210"],
+      ["smsMsg", "Message (optional)", "Hello"],
+    ],
+    build: (f) => (f.smsNum?.trim() ? `SMSTO:${f.smsNum.trim()}:${f.smsMsg || ""}` : ""),
+  },
+  Location: {
+    fields: [["place", "Place, address or lat,lng", "Taj Mahal, Agra"]],
+    build: (f) => (f.place?.trim() ? `https://www.google.com/maps?q=${enc(f.place.trim())}` : ""),
+  },
+};
 
 function loadImage(src) {
   return new Promise((resolve, reject) => {
@@ -115,29 +186,12 @@ export default function QRMaker() {
   const [bg, setBg] = useState("#ffffff");
   const [shape, setShape] = useState("rounded");
   const [logo, setLogo] = useState("/logo.jpg");
-  const [smartType, setSmartType] = useState("WhatsApp");
-  const [phone, setPhone] = useState("");
-  const [message, setMessage] = useState("");
-  const [ssid, setSsid] = useState("");
-  const [wifiPass, setWifiPass] = useState("");
-  const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState("");
+  const [smartType, setSmartType] = useState("Contact");
+  const [fields, setFields] = useState({});
   const [ready, setReady] = useState(false);
   const canvasRef = useRef(null);
 
-  let content = text.trim();
-  if (tab === "smart") {
-    if (smartType === "WhatsApp")
-      content = phone.trim()
-        ? `https://wa.me/${phone.replace(/\D/g, "")}${message ? `?text=${encodeURIComponent(message)}` : ""}`
-        : "";
-    else if (smartType === "WiFi")
-      content = ssid.trim() ? `WIFI:T:${wifiPass ? "WPA" : "nopass"};S:${ssid};P:${wifiPass};;` : "";
-    else
-      content = email.trim()
-        ? `mailto:${email.trim()}${subject ? `?subject=${encodeURIComponent(subject)}` : ""}`
-        : "";
-  }
+  const content = tab === "smart" ? SMART[smartType].build(fields) : text.trim();
 
   useEffect(() => {
     if (!content || !canvasRef.current) {
@@ -232,8 +286,8 @@ export default function QRMaker() {
 
           {tab === "smart" && (
             <>
-              <div className="flex gap-2 mb-4">
-                {SMART_TYPES.map((s) => (
+              <div className="flex flex-wrap gap-2 mb-4">
+                {Object.keys(SMART).map((s) => (
                   <button
                     key={s}
                     onClick={() => setSmartType(s)}
@@ -241,34 +295,21 @@ export default function QRMaker() {
                       smartType === s ? "gradient-bg text-white" : "border border-border text-muted"
                     }`}
                   >
-                    {s}
+                    {s === "Contact" ? "Contact (vCard)" : s === "UPI" ? "UPI Payment" : s}
                   </button>
                 ))}
               </div>
-              {smartType === "WhatsApp" && (
-                <>
-                  <label className="block text-sm font-medium mb-2">WhatsApp number (with country code)</label>
-                  <input className={inputCls} placeholder="919876543210" value={phone} onChange={(e) => setPhone(e.target.value)} />
-                  <label className="block text-sm font-medium mb-2">Pre-filled message (optional)</label>
-                  <input className={inputCls} placeholder="Hi, I want to know more" value={message} onChange={(e) => setMessage(e.target.value)} />
-                </>
-              )}
-              {smartType === "WiFi" && (
-                <>
-                  <label className="block text-sm font-medium mb-2">WiFi name (SSID)</label>
-                  <input className={inputCls} placeholder="MyHomeWiFi" value={ssid} onChange={(e) => setSsid(e.target.value)} />
-                  <label className="block text-sm font-medium mb-2">Password (leave empty for open network)</label>
-                  <input className={inputCls} placeholder="password" value={wifiPass} onChange={(e) => setWifiPass(e.target.value)} />
-                </>
-              )}
-              {smartType === "Email" && (
-                <>
-                  <label className="block text-sm font-medium mb-2">Email address</label>
-                  <input className={inputCls} placeholder="hello@example.com" value={email} onChange={(e) => setEmail(e.target.value)} />
-                  <label className="block text-sm font-medium mb-2">Subject (optional)</label>
-                  <input className={inputCls} placeholder="Enquiry" value={subject} onChange={(e) => setSubject(e.target.value)} />
-                </>
-              )}
+              {SMART[smartType].fields.map(([key, label, ph]) => (
+                <div key={key}>
+                  <label className="block text-sm font-medium mb-2">{label}</label>
+                  <input
+                    className={inputCls}
+                    placeholder={ph}
+                    value={fields[key] || ""}
+                    onChange={(e) => setFields((p) => ({ ...p, [key]: e.target.value }))}
+                  />
+                </div>
+              ))}
             </>
           )}
 
