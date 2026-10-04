@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
+import WorkWithUs from "@/components/WorkWithUs";
 
 export default function PDFMaker() {
   const [files, setFiles] = useState([]);
@@ -111,6 +112,7 @@ body { font-family: 'Segoe UI', Arial, sans-serif; color: #1e293b; }
   }
 
   return (
+    <>
     <section className="py-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -369,5 +371,7 @@ body { font-family: 'Segoe UI', Arial, sans-serif; color: #1e293b; }
         </motion.div>
       </div>
     </section>
+      <WorkWithUs />
+    </>
   );
 }

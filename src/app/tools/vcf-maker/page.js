@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
+import WorkWithUs from "@/components/WorkWithUs";
 
 const SAMPLE_CSV = `Name,Phone,Email,Organization,Tag
 Rahul Sharma,9876543210,rahul@example.com,ABC Corp,Client
@@ -108,6 +109,7 @@ export default function VCFMaker() {
   }
 
   return (
+    <>
     <section className="py-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -497,5 +499,7 @@ export default function VCFMaker() {
         </motion.div>
       </div>
     </section>
+      <WorkWithUs />
+    </>
   );
 }

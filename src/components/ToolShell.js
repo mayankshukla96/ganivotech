@@ -1,4 +1,5 @@
 import Link from "next/link";
+import WorkWithUs from "@/components/WorkWithUs";
 import { Breadcrumbs, FaqList, JsonLd, appSchema, faqSchema } from "@/components/seo";
 import { TOOLS } from "@/lib/tools-content";
 
@@ -61,6 +62,7 @@ export default function ToolShell({ t, crumbs, children, extra }) {
           </ul>
         </section>
       </article>
+      <WorkWithUs />
     </>
   );
 }

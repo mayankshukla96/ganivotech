@@ -1,3 +1,5 @@
+import WorkWithUs from "@/components/WorkWithUs";
+
 const TITLE = "Ganivotech Blog – IT Tips, Guides and Tutorials";
 const DESC = "Practical IT tips, how-to guides and tutorials from the Ganivotech team, including guides on QR codes and everyday tech tools.";
 
@@ -9,5 +11,10 @@ export const metadata = {
 };
 
 export default function Layout({ children }) {
-  return children;
+  return (
+    <>
+      {children}
+      <WorkWithUs />
+    </>
+  );
 }

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import WorkWithUs from "@/components/WorkWithUs";
 import QRGenerator from "@/components/QRGenerator";
 import { Breadcrumbs, FaqList, JsonLd, appSchema, faqSchema } from "@/components/seo";
 import { QR_TYPES, typeHref } from "@/lib/qr-builders";
@@ -188,6 +189,7 @@ export default function Page() {
           </ul>
         </section>
       </article>
+      <WorkWithUs />
     </>
   );
 }
