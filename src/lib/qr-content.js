@@ -1,0 +1,175 @@
+export const SITE = "https://ganivotech.com";
+
+export const MAIN_FAQS = [
+  ["What is a QR code?", "A QR (Quick Response) code is a square barcode that stores data such as a link, text, WiFi login or contact. A phone camera reads the pattern and then opens the link, joins the network or saves the contact."],
+  ["How do I create a QR code?", "Choose a type (website link, text, WiFi, WhatsApp and so on), enter the details, optionally change colours, pattern or logo, then download the PNG or SVG. The code is generated instantly in your browser."],
+  ["Is this QR code generator free?", "Yes. Every QR type, every style option and the downloads are free. There is no watermark added to your QR code."],
+  ["Do I need to create an account?", "No. There is no sign-up or login. Open the page, create your QR code and download it."],
+  ["Do QR codes expire?", "The QR codes made here are static: the data is written directly into the pattern, so they never expire and keep working as long as the link or information inside stays valid. Nothing is stored on our servers."],
+  ["Can I add a logo to my QR code?", "Yes. Upload your own logo or use the Ganivotech logo. The error correction level is raised to High automatically so the code stays scannable. Always test it with a phone before printing."],
+  ["Can I download an SVG QR code?", "Yes. SVG is a vector format that stays sharp at any size, which makes it the best choice for posters, banners and print. PNG is also available in four sizes."],
+  ["Can I create a WiFi QR code?", "Yes. Enter the network name and password and guests can join by scanning with their camera, without typing the password. Recent iPhones and most Android 10+ phones support this natively."],
+  ["Can I create a WhatsApp QR code?", "Yes. Enter a number with its country code and an optional pre-filled message. Scanning opens a WhatsApp chat with that number."],
+  ["Are QR codes safe?", "A QR code is only as safe as what it points to. Create codes only for links you control, and preview a link before opening a code you did not make. Our generator runs in your browser and does not upload what you enter."],
+];
+
+export const TYPE_PAGES = {
+  text: {
+    title: "Free Text QR Code Generator – Plain Text to QR | GanivoTech",
+    description: "Turn any text, note or code into a QR code. Free text QR generator with colours, logo and SVG or PNG download. No signup, runs in your browser.",
+    h1: "Free Text QR Code Generator",
+    intro: "Encode a message, serial number, coupon code or short note in a QR code. When scanned, the phone simply shows the text, so it works even where there is no internet connection.",
+    steps: ["Type or paste your text into the box.", "Pick colours or a pattern if you want a styled code.", "Download the QR code as PNG or SVG."],
+    uses: ["Equipment serial numbers and asset labels", "Coupon or voucher codes on printed flyers", "Short instructions placed on a machine", "Museum or classroom captions"],
+    faqs: [
+      ["How much text can a QR code hold?", "A QR code can hold a few thousand characters, but longer text makes a denser code that is harder to scan. For best results keep it under a few hundred characters."],
+      ["Does a text QR code need internet?", "No. The phone reads the text straight from the code. Only links need a connection to open."],
+      ["Can I use text QR codes in other languages?", "Yes. Hindi, Tamil, Arabic and other scripts are supported because the text is stored as UTF-8."],
+    ],
+  },
+  wifi: {
+    title: "Free WiFi QR Code Generator – Share WiFi Without Typing | GanivoTech",
+    description: "Create a WiFi QR code so guests join your network by scanning. Free WiFi QR generator, works with WPA/WPA2, no signup, password never leaves your browser.",
+    h1: "Free WiFi QR Code Generator",
+    intro: "Print a WiFi QR code once and stop spelling out passwords. Guests scan it with their camera and connect to your network, whether it is a home router, a cafe or an office.",
+    steps: ["Enter the exact network name (SSID) and password.", "Leave the password empty only for an open network.", "Download the code and print it or stick it near the router."],
+    uses: ["Cafes, restaurants and salons for customer WiFi", "Home guests and rental properties", "Offices and co-working reception desks", "Schools and event venues"],
+    faqs: [
+      ["Is it safe to put my WiFi password in a QR code?", "Anyone who can see the printed code can join the network, exactly like a written password. Display it only where you are comfortable sharing access, and use a guest network if you can. Our tool creates the code in your browser and does not send the password anywhere."],
+      ["Which phones can scan a WiFi QR code?", "iPhones on iOS 11 and later, and most Android phones from Android 10, can join directly from the camera. Older Android phones may need a scanner app."],
+      ["What happens if I change my WiFi password?", "The old code stops working, because the password is stored inside it. Create and print a new code."],
+    ],
+  },
+  whatsapp: {
+    title: "Free WhatsApp QR Code Generator – Chat Link QR | GanivoTech",
+    description: "Create a WhatsApp QR code that opens a chat with your number and an optional pre-filled message. Free, no signup, download PNG or SVG.",
+    h1: "Free WhatsApp QR Code Generator",
+    intro: "Let customers start a WhatsApp chat with you by scanning a code. Add a pre-filled message such as \"I'd like a quote\" so you know why they are writing.",
+    steps: ["Enter your number with country code, digits only (for example 919876543210).", "Add an optional pre-filled message.", "Download the code and place it on posters, menus or packaging."],
+    uses: ["Shop counters and product packaging", "Business cards and brochures", "Event posters for enquiries", "School admission and fee-desk notices"],
+    faqs: [
+      ["How do I write the number?", "Use the country code followed by the number, with no plus sign, spaces or leading zeros. An Indian mobile number looks like 919876543210."],
+      ["Does it work with WhatsApp Business?", "Yes. The code uses the standard wa.me chat link, which works for both WhatsApp and WhatsApp Business numbers."],
+      ["Can I change the message later?", "The message is stored in the code, so a new message needs a new code. The number and message are not tracked by us."],
+    ],
+  },
+  vcard: {
+    title: "Free vCard QR Code Generator – Contact Card QR | GanivoTech",
+    description: "Create a vCard QR code so people can save your contact details with one scan. Free business card QR generator, no signup, PNG and SVG download.",
+    h1: "Free vCard QR Code Generator",
+    intro: "A vCard QR code holds your name, phone, email, company and website. Scanning it offers to save you as a contact, which is faster and more reliable than typing details from a business card.",
+    steps: ["Enter your name and any details you want to share.", "Style the code to match your brand and add your logo if you like.", "Print it on a card, badge or email signature and test it with a phone."],
+    uses: ["Business cards and conference badges", "Email signatures and website contact pages", "Real-estate and sales hoardings", "Teacher or staff contact sheets"],
+    faqs: [
+      ["What details can I include?", "Name, phone, email, company and website. Each extra detail makes the code denser, so share only what people need."],
+      ["Is this the same as the VCF Maker?", "No. This tool makes a QR code for one contact. To import many contacts at once, use the VCF Maker, which turns a spreadsheet into one .vcf file."],
+      ["Will it work on iPhone and Android?", "Yes. Both camera apps recognise contact QR codes and offer to add the contact."],
+    ],
+  },
+  email: {
+    title: "Free Email QR Code Generator – mailto QR Code | GanivoTech",
+    description: "Create an email QR code with address, subject and message pre-filled. Free email QR generator, no signup, download PNG or SVG.",
+    h1: "Free Email QR Code Generator",
+    intro: "An email QR code opens the phone's mail app with the recipient, subject and message already filled in. It is a quick way to collect enquiries, feedback or support requests from print.",
+    steps: ["Enter the recipient email address.", "Add an optional subject and message.", "Download the code and add it to flyers, packaging or signage."],
+    uses: ["Customer feedback and complaint desks", "Support contact on product manuals", "Job application or enquiry posters", "Event RSVP requests"],
+    faqs: [
+      ["Will the email send automatically?", "No. The mail app opens with the draft ready and the person still presses send."],
+      ["Which mail app opens?", "The default mail app on the phone, such as Gmail, Outlook or Apple Mail."],
+      ["Can I put a long message in it?", "You can, but long messages make a dense code. Keep the pre-filled text short."],
+    ],
+  },
+  phone: {
+    title: "Free Phone Number QR Code Generator – Call QR | GanivoTech",
+    description: "Create a QR code that dials a phone number when scanned. Free phone QR generator, no signup, PNG and SVG download.",
+    h1: "Free Phone Number QR Code Generator",
+    intro: "Scanning a phone QR code opens the dialler with your number ready to call. It suits printed material where typing a number is a hassle.",
+    steps: ["Enter the phone number with country code (for example +919876543210).", "Choose a colour or logo if you want.", "Download the code and print it."],
+    uses: ["Helpline and emergency numbers on signs", "Delivery and taxi service stickers", "Lost-and-found tags on bags and pets", "Reception and front-desk notices"],
+    faqs: [
+      ["Does scanning call immediately?", "No. The phone shows the number and asks the person to confirm the call."],
+      ["Should I include the country code?", "Yes, include it so the number works from anywhere, for example +91 for India."],
+      ["Is this different from a WhatsApp QR code?", "Yes. This one starts a normal phone call. Use the WhatsApp QR generator to open a chat."],
+    ],
+  },
+  sms: {
+    title: "Free SMS QR Code Generator – Text Message QR | GanivoTech",
+    description: "Create an SMS QR code with a number and pre-written message. Free SMS QR generator, no signup, download PNG or SVG.",
+    h1: "Free SMS QR Code Generator",
+    intro: "An SMS QR code opens the messaging app with a number and a ready-made text. It is useful for keyword-based sign-ups, votes and quick enquiries.",
+    steps: ["Enter the phone number to text.", "Write the message people should send.", "Download the code and test it on both iPhone and Android."],
+    uses: ["Keyword opt-ins such as \"JOIN\" to a service number", "Polls and feedback at events", "Appointment or callback requests", "Delivery and service confirmations"],
+    faqs: [
+      ["Does it send the text automatically?", "No. The message app opens pre-filled and the person taps send."],
+      ["Do all phones support SMS QR codes?", "Most camera and scanner apps do, but behaviour varies by phone and app, so test your code before printing."],
+      ["Do standard SMS charges apply?", "Yes. The text is sent by the person's own plan."],
+    ],
+  },
+  location: {
+    title: "Free Location QR Code Generator – Google Maps QR Code | GanivoTech",
+    description: "Search any place and create a QR code that opens it in Google Maps. Free location QR generator, no signup, PNG and SVG download.",
+    h1: "Free Location QR Code Generator",
+    intro: "Search for a school, shop, office or address, pick the exact spot, and get a QR code that opens it in Google Maps for directions. Great for printed invitations and visiting cards.",
+    steps: ["Type the place name or address and choose a suggestion to pin the exact location.", "Style the code and add a logo if you wish.", "Download the QR code and print it on cards, invitations or signboards."],
+    uses: ["Shop and clinic visiting cards", "Wedding and event invitations", "School and coaching-centre brochures", "Property listings and site boards"],
+    faqs: [
+      ["Is place search powered by Google?", "Suggestions come from the free OpenStreetMap-based Photon search. The QR code itself opens the chosen coordinates in Google Maps. If a suggestion is missing, type the full address and the code will search Google Maps for it."],
+      ["Will the pin be exact?", "When you pick a suggestion, the code stores its coordinates. Check the pin on your phone before printing."],
+      ["Do I need internet to scan?", "The phone needs a connection to load Google Maps after scanning."],
+    ],
+  },
+  event: {
+    title: "Free Event QR Code Generator – Add to Calendar QR | GanivoTech",
+    description: "Create a calendar event QR code with title, date, time and venue. Free event QR generator, no signup, download PNG or SVG.",
+    h1: "Free Event QR Code Generator",
+    intro: "An event QR code carries the title, start and end time, venue and details in standard calendar format. Scanning it offers to add the event to the phone's calendar.",
+    steps: ["Enter the event title and start time, plus optional end time, venue and details.", "Style the code to match your invitation.", "Download it and print it on posters, tickets or invitations."],
+    uses: ["Annual days, seminars and webinars", "Wedding and party invitations", "Parent-teacher meeting notices", "Workshop and training posters"],
+    faqs: [
+      ["Which calendars does it work with?", "The code uses the standard iCalendar format. The iPhone camera offers to add it to Calendar, and many Android scanner apps do the same. Support varies by app, so test first."],
+      ["What about time zones?", "The time is stored without a time zone, so it is treated as local time on the scanning phone. For events across time zones, mention the zone in the details."],
+      ["Can I update the event later?", "No. The details are stored inside the code, so a change needs a new code."],
+    ],
+  },
+  upi: {
+    title: "Free UPI QR Code Generator – Payment QR for Any UPI App | GanivoTech",
+    description: "Create a UPI payment QR code from your UPI ID with optional amount and note. Free UPI QR generator, no signup, works with any UPI app.",
+    h1: "Free UPI QR Code Generator",
+    intro: "Generate a static UPI QR code from your UPI ID. Customers scan it with PhonePe, Google Pay, Paytm or any UPI app and the payment screen opens with your details filled in.",
+    steps: ["Enter your UPI ID, and optionally the payee name, amount and note.", "Style the code or add your shop logo.", "Download and print it, then test a small payment to confirm the right account receives it."],
+    uses: ["Shop counters and market stalls", "Fee collection desks at schools", "Freelancers sharing a payment link on invoices", "Donation boxes and community events"],
+    faqs: [
+      ["Does Ganivotech process the payment?", "No. We only create the QR code. Payments go directly through the customer's UPI app to your bank account, and we never see your transactions. Ganivotech is not affiliated with NPCI or any payment app."],
+      ["Should I fix an amount?", "Leave the amount empty for a general shop code. Add an amount for a specific invoice, since some apps then lock the amount."],
+      ["How do I stay safe from payment fraud?", "Always test your own code, never share one-time passwords, and remember that scanning a code is only needed to pay, never to receive money."],
+    ],
+  },
+};
+
+export const GUIDES = {
+  "how-to-create-a-wifi-qr-code": {
+    title: "How to Create a WiFi QR Code (Free, Step by Step)",
+    description: "Learn how to make a WiFi QR code so guests can join your network by scanning, with tips on printing, security and troubleshooting.",
+    h1: "How to Create a WiFi QR Code",
+    date: "2026-10-04",
+    related: "wifi",
+    sections: [
+      { h: "What a WiFi QR code does", p: ["A WiFi QR code stores your network name, security type and password in a standard text format. When a guest scans it with a phone camera, the phone offers to join the network, so nobody has to read out or retype a long password."] },
+      { h: "Steps to create one", p: ["Open the WiFi QR code generator and enter the network name exactly as it appears on your router, including capital letters and spaces. Enter the password, or leave it empty for an open network.", "Download the code as PNG for screens and documents, or SVG for printing at larger sizes. Test it with your own phone before you print."] },
+      { h: "Tips for printing and security", p: ["Print the code at least 3 cm wide, on a light background with a dark code. Place it where guests can see it, such as near the reception desk or on the table.", "Anyone who can see the code can join the network, so use a separate guest network where possible, and change the password and the code if it leaks."] },
+      { h: "If it does not scan", p: ["Check the network name and password for typos, make sure the QR colours have strong contrast, and try a larger print. Older Android phones may need a QR scanner app instead of the camera."] },
+    ],
+  },
+  "static-vs-dynamic-qr-codes": {
+    title: "Static vs Dynamic QR Codes: What Is the Difference?",
+    description: "Understand static and dynamic QR codes, when each makes sense, and why static codes never expire.",
+    h1: "Static vs Dynamic QR Codes",
+    date: "2026-10-04",
+    related: null,
+    sections: [
+      { h: "Static QR codes", p: ["A static QR code stores the information directly in the pattern. The code for a link contains the link itself. Because nothing depends on a server, a static code never expires and works for as long as the destination exists.", "The trade-off is that you cannot edit it after printing. If the link or details change, you need a new code."] },
+      { h: "Dynamic QR codes", p: ["A dynamic QR code points to a short redirect address run by a service. You can change where it leads and see scan counts, but the code only works while that service and its subscription stay active. If the account lapses, printed codes can stop working."] },
+      { h: "Which should you use?", p: ["Choose static for permanent things: WiFi, contact cards, a website that will not move, UPI payments and plain text. Choose dynamic only when you truly need editing or analytics for a campaign, and understand who controls the redirect.", "The codes created on Ganivotech are static. We do not store them, track scans or add redirects."] },
+    ],
+  },
+};

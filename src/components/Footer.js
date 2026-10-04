@@ -14,11 +14,12 @@ const footerLinks = {
     { href: "/services", label: "Cloud Solutions" },
     { href: "/services", label: "IT Consulting" },
   ],
-  Resources: [
-    { href: "/blog", label: "IT Tips" },
-    { href: "/blog", label: "Tutorials" },
-    { href: "/blog", label: "Case Studies" },
-    { href: "/contact", label: "Support" },
+  "Free Tools": [
+    { href: "/tools/qr-generator", label: "Free QR Code Generator" },
+    { href: "/tools/qr-generator/wifi", label: "WiFi QR Code" },
+    { href: "/tools/vcf-maker", label: "VCF Maker" },
+    { href: "/tools/pdf-maker", label: "PDF Maker" },
+    { href: "/blog/qr-code", label: "QR Code Guides" },
   ],
 };
 
@@ -74,13 +75,13 @@ export default function Footer() {
           </p>
           <div className="flex items-center gap-6">
             <Link
-              href="#"
+              href="/privacy"
               className="text-sm text-muted hover:text-primary transition-colors"
             >
               Privacy Policy
             </Link>
             <Link
-              href="#"
+              href="/terms"
               className="text-sm text-muted hover:text-primary transition-colors"
             >
               Terms of Service
