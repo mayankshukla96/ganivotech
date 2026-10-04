@@ -119,6 +119,9 @@ export default async function Page({ searchParams }) {
       <Shell>
         <h1 className="text-2xl font-bold mb-2">Website Analytics</h1>
         <p className="text-muted">Not configured yet.</p>
+        <p className="mt-2 text-xs text-muted">
+          deployment: {process.env.VERCEL_ENV || "local"} / {(process.env.VERCEL_GIT_COMMIT_SHA || "").slice(0, 7) || "n/a"}
+        </p>
       </Shell>
     );
   }
