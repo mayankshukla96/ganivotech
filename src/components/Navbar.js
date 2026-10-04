@@ -37,7 +37,7 @@ export default function Navbar() {
             </span>
           </Link>
 
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-6">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -57,7 +57,7 @@ export default function Navbar() {
 
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 text-muted hover:text-foreground transition-colors"
+            className="lg:hidden p-2 text-muted hover:text-foreground transition-colors"
             aria-label="Toggle menu"
           >
             <svg
@@ -92,7 +92,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background border-b border-border overflow-hidden"
+            className="lg:hidden bg-background border-b border-border overflow-hidden"
           >
             <div className="px-4 py-4 space-y-3">
               {navLinks.map((link) => (

@@ -70,9 +70,9 @@ export default function PDFMaker() {
 @page { size: ${size} ${orientation}; margin: ${m}; }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: 'Segoe UI', Arial, sans-serif; color: #1e293b; }
-.page { page-break-after: always; width: 100%; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 10mm; }
+.page { page-break-after: always; width: 100%; }
 .page:last-child { page-break-after: auto; }
-.page img { max-width: 100%; max-height: ${orientation === "portrait" ? "90vh" : "80vh"}; object-fit: contain; }
+.page img { display: block; width: 100%; height: auto; max-height: 96vh; object-fit: contain; object-position: top center; }
 .text-page { padding: 15mm; display: block; }
 .text-page pre { white-space: pre-wrap; word-break: break-word; font-size: 12px; line-height: 1.6; font-family: 'Courier New', monospace; }
 .html-page { padding: 10mm; display: block; }
