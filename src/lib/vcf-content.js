@@ -6,4 +6,18 @@ export const VCF_FAQS = [
   ["Can I add contacts without a CSV?", "Yes. Click 'Add Contacts Manually' and type each contact directly in the table. You can also mix both methods."],
 ];
 
-export const VCF_GUIDES = {};
+export const VCF_GUIDES = {
+  "what-is-a-vcf-file": {
+    title: "What Is a VCF File? How It Works and How to Use One",
+    description: "Learn what a VCF (vCard) file is, what it stores, how to open and import one on Android and iPhone, and when to use it over a spreadsheet.",
+    h1: "What Is a VCF File?",
+    date: "2026-10-04",
+    sections: [
+      { h: "VCF basics", p: ["VCF stands for vCard File. It is a plain-text file format (file extension .vcf) that stores contact information — name, phone number, email, company, address and more — in a standard structure that every major phone, email client and contacts app can read.", "The format was introduced in the mid-1990s and is now maintained as an open standard (RFC 6350). Because it is universally supported, a VCF file created on an Android phone opens just as well on an iPhone, in Gmail, in Outlook or in Thunderbird."] },
+      { h: "What a VCF file contains", p: ["Each contact in a VCF file is wrapped between BEGIN:VCARD and END:VCARD lines. Inside, fields like FN (full name), TEL (phone), EMAIL, ORG (organisation) and NOTE hold the data. A single .vcf file can contain one contact or thousands — the file simply stacks the vCard blocks one after another.", "The format supports version 3.0 and 4.0. Version 3.0 is the most widely compatible and is what most tools, including ours, produce. It covers the fields most people need: name, phone, email, company, categories and notes."] },
+      { h: "How to open and import a VCF file", p: ["On Android, tap the downloaded .vcf file. The Contacts app opens and offers to import all contacts at once. You can choose which account (Google, phone, SIM) to save them to. Alternatively, open Google Contacts, tap the menu, choose Import, and select the file.", "On iPhone, open the .vcf file from Mail, AirDrop, Files or a messaging app. iOS shows a preview and an 'Add All Contacts' button at the top. Tap it, confirm, and the contacts appear in your address book.", "On a computer, double-clicking a .vcf file usually opens it in the default contacts or mail app. You can also import it manually into Gmail (Contacts > Import) or Outlook (File > Open & Export > Import/Export)."] },
+      { h: "VCF vs CSV for contacts", p: ["A CSV (comma-separated values) file is a spreadsheet format. It is easy to edit in Excel or Google Sheets but has no standard field mapping — one app's 'Mobile Phone' column might be another's 'Cell'. Importing a CSV often means manually matching columns.", "A VCF file uses named fields that every contacts app already understands, so there is no column-mapping step. The trade-off is that VCF is harder to edit by hand. The practical workflow is: prepare your contacts in a spreadsheet (CSV), then convert to VCF for importing."] },
+      { h: "When to use a VCF file", p: ["Use VCF whenever you need to move contacts between devices or share a contact list with other people. Teachers sharing parent contacts, event organisers distributing attendee lists, sales teams handing over leads, and businesses onboarding new staff all benefit from a single .vcf file that imports in one tap.", "Our VCF maker takes a CSV of contacts, lets you preview and edit them, adds an optional name prefix tag for easy searching, and downloads a ready-to-import .vcf file. Everything runs in your browser — your contacts are never uploaded to a server."] },
+    ],
+  },
+};
