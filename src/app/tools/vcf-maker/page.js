@@ -378,6 +378,123 @@ export default function VCFMaker() {
             </div>
           </motion.div>
         )}
+        {/* Guide Section */}
+        <motion.div
+          className="mt-14"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+        >
+          <h2 className="text-2xl font-bold mb-6 text-center">
+            What is a <span className="gradient-text">VCF File</span>?
+          </h2>
+          <div className="rounded-2xl border border-border bg-surface p-6 sm:p-8 mb-6">
+            <p className="text-sm text-muted leading-relaxed mb-4">
+              A <strong>VCF (vCard File)</strong> is a standard file format for storing contact information. It lets you <strong>save multiple contacts in a single file</strong> and import them all at once into your phone, email, or any contacts app — no need to add contacts one by one.
+            </p>
+            <div className="grid sm:grid-cols-3 gap-4 mt-5">
+              <div className="p-4 rounded-xl bg-background border border-border text-center">
+                <div className="text-2xl mb-2">📇</div>
+                <p className="text-sm font-semibold mb-1">One File, Many Contacts</p>
+                <p className="text-xs text-muted">Save 10, 100, or 1000+ contacts in a single .vcf file</p>
+              </div>
+              <div className="p-4 rounded-xl bg-background border border-border text-center">
+                <div className="text-2xl mb-2">📱</div>
+                <p className="text-sm font-semibold mb-1">Works Everywhere</p>
+                <p className="text-xs text-muted">Android, iPhone, Gmail, Outlook — all support VCF</p>
+              </div>
+              <div className="p-4 rounded-xl bg-background border border-border text-center">
+                <div className="text-2xl mb-2">⚡</div>
+                <p className="text-sm font-semibold mb-1">Instant Import</p>
+                <p className="text-xs text-muted">One tap to import all contacts at once</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Android Guide */}
+            <div className="rounded-2xl border border-border bg-surface p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-2xl">🤖</span>
+                <h3 className="text-lg font-semibold">Save VCF on Android</h3>
+              </div>
+              <ol className="space-y-3 text-sm text-muted">
+                <li className="flex gap-3">
+                  <span className="font-bold text-primary min-w-[24px]">1.</span>
+                  <span>Download the <strong>.vcf file</strong> to your phone (via WhatsApp, email, or direct download).</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="font-bold text-primary min-w-[24px]">2.</span>
+                  <span>Tap the downloaded file — your phone will open it with the <strong>Contacts app</strong> automatically.</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="font-bold text-primary min-w-[24px]">3.</span>
+                  <span>Select the account to save to (Google, Phone, etc.).</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="font-bold text-primary min-w-[24px]">4.</span>
+                  <span>Tap <strong>&quot;Import&quot;</strong> — all contacts are added instantly!</span>
+                </li>
+              </ol>
+              <div className="mt-4 p-3 rounded-lg bg-blue-50 border border-blue-100">
+                <p className="text-xs text-blue-700">
+                  <strong>Alternative:</strong> Open Google Contacts → Menu (☰) → Import → Select the .vcf file.
+                </p>
+              </div>
+            </div>
+
+            {/* iPhone Guide */}
+            <div className="rounded-2xl border border-border bg-surface p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-2xl">🍎</span>
+                <h3 className="text-lg font-semibold">Save VCF on iPhone</h3>
+              </div>
+              <ol className="space-y-3 text-sm text-muted">
+                <li className="flex gap-3">
+                  <span className="font-bold text-primary min-w-[24px]">1.</span>
+                  <span>Send the <strong>.vcf file</strong> to yourself via email, AirDrop, or iMessage.</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="font-bold text-primary min-w-[24px]">2.</span>
+                  <span>Tap the .vcf file attachment to open it.</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="font-bold text-primary min-w-[24px]">3.</span>
+                  <span>Tap <strong>&quot;Add All Contacts&quot;</strong> at the top.</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="font-bold text-primary min-w-[24px]">4.</span>
+                  <span>Confirm by tapping <strong>&quot;Add All Contacts&quot;</strong> again — done!</span>
+                </li>
+              </ol>
+              <div className="mt-4 p-3 rounded-lg bg-blue-50 border border-blue-100">
+                <p className="text-xs text-blue-700">
+                  <strong>Alternative:</strong> Email the .vcf to your iCloud email → open in Mail app → tap to import.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Use Cases */}
+          <div className="rounded-2xl border border-border bg-surface p-6 sm:p-8 mt-6">
+            <h3 className="text-lg font-semibold mb-4">Perfect For</h3>
+            <div className="grid sm:grid-cols-2 gap-3">
+              {[
+                "Teachers sharing class parent contacts",
+                "Event organizers distributing attendee lists",
+                "Businesses sharing team contacts with clients",
+                "Groups & communities sharing member directories",
+                "Sales teams distributing lead contacts",
+                "Schools sending staff contact lists",
+              ].map((use) => (
+                <div key={use} className="flex items-start gap-2 text-sm text-muted">
+                  <span className="text-green-500 mt-0.5">✓</span>
+                  <span>{use}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
