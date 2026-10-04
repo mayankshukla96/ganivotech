@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
@@ -18,6 +18,17 @@ const navLinks = [
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [admin, setAdmin] = useState(false);
+
+  // the Analytics link is shown only to the signed-in owner
+  useEffect(() => {
+    fetch("/api/admin/me")
+      .then((r) => r.json())
+      .then((d) => setAdmin(!!d.admin))
+      .catch(() => {});
+  }, []);
+
+  const links = admin ? [...navLinks, { href: "/admin/analytics", label: "Analytics" }] : navLinks;
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
@@ -38,7 +49,7 @@ export default function Navbar() {
           </Link>
 
           <div className="hidden lg:flex items-center gap-6">
-            {navLinks.map((link) => (
+            {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -95,7 +106,7 @@ export default function Navbar() {
             className="lg:hidden bg-background border-b border-border overflow-hidden"
           >
             <div className="px-4 py-4 space-y-3">
-              {navLinks.map((link) => (
+              {links.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
