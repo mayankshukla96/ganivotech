@@ -1,6 +1,8 @@
 import { createHash } from "crypto";
+import { after } from "next/server";
 import { dbConfigured, q } from "@/lib/analytics-db";
 import { istDateString } from "@/lib/analytics-utils";
+import { alertConfigured, sendLeadAlert } from "@/lib/lead-alert";
 
 // Stores enquiries (SellerSync pilot applications, contact form) for the owner dashboard.
 const PRODUCTS = new Set(["sellersync-os", "digital-desk", "contact"]);
@@ -41,10 +43,19 @@ export async function POST(req) {
     const [{ n }] = await q("SELECT count(*)::int n FROM leads WHERE vid = $1 AND ts > now() - interval '1 day'", [vid]);
     if (n >= 5) return fail("You have sent several messages today. We will reply soon, or please try again tomorrow.", 429);
 
-    await q(
-      "INSERT INTO leads (product, name, phone, email, business, details, message, vid) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)",
-      [product, name, phone || null, email || null, clip(b.business, 120) || null, clip(b.details, 300) || null, clip(b.message, 2000) || null, vid]
+    const lead = { product, name, phone, email, business: clip(b.business, 120), details: clip(b.details, 300), message: clip(b.message, 2000) };
+    const [{ id }] = await q(
+      "INSERT INTO leads (product, name, phone, email, business, details, message, vid) VALUES ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING id",
+      [product, name, phone || null, email || null, lead.business || null, lead.details || null, lead.message || null, vid]
     );
+
+    // email the owner after the visitor has been answered; a failure is recorded on the lead so the dashboard shows it
+    if (alertConfigured()) {
+      after(async () => {
+        const err = await sendLeadAlert(lead);
+        if (err) await q("UPDATE leads SET alert_error = $1 WHERE id = $2", [err, id]).catch(() => {});
+      });
+    }
     return Response.json({ ok: true });
   } catch {
     return fail("Could not send. Please try again, or email hello@ganivotech.com.", 500);

@@ -50,7 +50,8 @@ export async function ensureSchema() {
           details TEXT,
           message TEXT,
           vid TEXT
-        );`
+        );
+        ALTER TABLE leads ADD COLUMN IF NOT EXISTS alert_error TEXT;`
       )
       .catch((e) => {
         g.__gtSchema = null;

@@ -40,7 +40,7 @@ async function load(range) {
     q(`SELECT os k, count(*)::int n FROM pageviews WHERE ${w} GROUP BY 1 ORDER BY n DESC`, p),
     q(`SELECT ts, path, source, medium, country, region, city, device, browser FROM pageviews WHERE ${w} ORDER BY ts DESC, id DESC LIMIT 40`, p),
     q("SELECT ts, name, idea, source FROM suggestions ORDER BY ts DESC, id DESC LIMIT 20"),
-    q("SELECT ts, product, name, phone, email, business, details, message FROM leads ORDER BY ts DESC, id DESC LIMIT 50"),
+    q("SELECT ts, product, name, phone, email, business, details, message, alert_error FROM leads ORDER BY ts DESC, id DESC LIMIT 50"),
   ]);
   return { totals: totals[0], bounce: bounce[0].n, series, pages, entries, exits, flows, sources, mediums, countries, cities, devices, browsers, systems, recent, ideas, leads };
 }
@@ -307,6 +307,7 @@ export default async function Page({ searchParams }) {
                 </p>
                 {l.details && <p className="text-xs text-muted mt-1">{l.details}</p>}
                 {l.message && <p className="mt-1 whitespace-pre-wrap">{l.message}</p>}
+                {l.alert_error && <p className="mt-1 text-xs text-red-600">Email alert failed: {l.alert_error}</p>}
               </li>
             ))}
           </ul>

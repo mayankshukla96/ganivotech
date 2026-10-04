@@ -26,7 +26,7 @@ export default function Page() {
 
         <h2 className={h2}>Information we receive</h2>
         <p className={p}>
-          Our hosting provider (Vercel) keeps standard server logs, such as IP address, browser and pages requested, to deliver and secure the site. If you send a message through the contact page, apply for SellerSync OS or Digital Desk, or email us, we store the details you give (such as your name, phone number, email address, business name and message) and use them only to reply to you about that enquiry.
+          Our hosting provider (Vercel) keeps standard server logs, such as IP address, browser and pages requested, to deliver and secure the site. If you send a message through the contact page, apply for SellerSync OS or Digital Desk, or email us, we store the details you give (such as your name, phone number, email address, business name and message) and use them only to reply to you about that enquiry. We also receive an email copy of each enquiry, sent through our email provider, Brevo.
         </p>
 
         <h2 className={h2}>Cookies and analytics</h2>
