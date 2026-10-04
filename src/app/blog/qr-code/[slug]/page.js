@@ -48,7 +48,7 @@ export default async function Page({ params }) {
           crumbs={[["Home", "/"], ["QR Code Guides", "/blog/qr-code"], [g.h1, `/blog/qr-code/${slug}`]]}
         />
         <h1 className="text-4xl font-bold mb-3">{g.h1}</h1>
-        <p className="text-xs text-muted mb-8">By Ganivotech &bull; Published <time dateTime={g.date}>4 October 2026</time></p>
+        <p className="text-xs text-muted mb-8">By Ganivotech &bull; Published <time dateTime={g.date}>{new Date(g.date).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })}</time></p>
         {g.sections.map((s) => (
           <section key={s.h} className="mb-8">
             <h2 className="text-2xl font-bold mb-3">{s.h}</h2>
