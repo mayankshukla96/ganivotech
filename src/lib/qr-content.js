@@ -160,6 +160,20 @@ export const GUIDES = {
       { h: "If it does not scan", p: ["Check the network name and password for typos, make sure the QR colours have strong contrast, and try a larger print. Older Android phones may need a QR scanner app instead of the camera."] },
     ],
   },
+  "what-is-a-qr-code": {
+    title: "What Is a QR Code? How It Works, Types and Everyday Uses",
+    description: "Learn what a QR code is, how it stores data, the different types you can create, and practical tips for scanning and printing.",
+    h1: "What Is a QR Code?",
+    date: "2026-10-04",
+    related: null,
+    sections: [
+      { h: "QR code basics", p: ["QR stands for Quick Response. A QR code is a two-dimensional barcode made up of black and white squares arranged on a grid. Unlike a traditional barcode, which stores data in one direction, a QR code stores data both horizontally and vertically, so it can hold much more information in a smaller space.", "Denso Wave, a subsidiary of Toyota, invented the QR code in 1994 to track car parts on the assembly line. The format is open and royalty-free, which is why it appears everywhere from boarding passes to restaurant menus."] },
+      { h: "How the data is stored", p: ["The pattern encodes data as a string of ones and zeros. Three large squares in the corners help the scanner find and orient the code, even at an angle or partially covered. Smaller alignment patterns keep the grid accurate in larger codes.", "QR codes include built-in error correction. A portion of the data is redundant, so the code still scans if part of it is scratched, dirty or covered by a logo. Error correction comes in four levels, from Low (recovers about 7 percent) to High (recovers about 30 percent). Higher correction means a denser pattern for the same data, so there is always a trade-off between resilience and scannability."] },
+      { h: "Common types of QR codes", p: ["A URL QR code is the most common: it stores a web address and opens a browser when scanned. But QR codes can also hold plain text, WiFi credentials, contact cards (vCard), calendar events, email addresses, phone numbers, SMS messages and UPI payment details.", "All of these are static codes: the information lives inside the pattern itself. There is nothing to expire and no server to depend on, as long as the content inside remains valid."] },
+      { h: "How to scan one", p: ["On most phones made after 2018, just open the camera and point it at the code. iPhones running iOS 11 or later and Android phones on Android 9 or later recognise QR codes natively. A notification or link appears on screen, and you tap to open it.", "If your camera does not detect codes, search your app store for a QR scanner. Avoid scanners that ask for unnecessary permissions. Before opening a link from a code you did not create, check the URL preview to make sure it leads somewhere you trust."] },
+      { h: "Printing and sizing tips", p: ["A QR code should be at least 2 cm (about 0.8 inches) wide for close-up scanning, such as on a business card. For a poster meant to be scanned from a metre away, 10 cm is a good starting point. The rule of thumb is that the code width should be roughly one-tenth of the expected scanning distance.", "Use high contrast: a dark code on a light background scans best. Inverting the colours or using low-contrast combinations makes scanning unreliable. If you add a logo, keep it small and centred, and raise the error correction level to High so the covered area can be recovered."] },
+    ],
+  },
   "static-vs-dynamic-qr-codes": {
     title: "Static vs Dynamic QR Codes: What Is the Difference?",
     description: "Understand static and dynamic QR codes, when each makes sense, and why static codes never expire.",
