@@ -3,9 +3,9 @@ import { Breadcrumbs, JsonLd } from "@/components/seo";
 import { EXTENSION_LIST } from "@/lib/extensions";
 import { SITE } from "@/lib/qr-content";
 
-const TITLE = "Free Chrome Extensions by GanivoTech – QR Scanner, WhatsApp Tools & More";
+const TITLE = "Free Chrome Extensions – QR, AI Summaries, WhatsApp | GanivoTech";
 const DESC =
-  "Free, private Chrome extensions from Ganivotech: make and scan QR codes, export WhatsApp Web group numbers to CSV and more. No account, runs in your browser.";
+  "Free, private Chrome extensions from Ganivotech: make and scan QR codes, summarize pages with on-device AI, export WhatsApp Web group numbers to CSV.";
 
 export const metadata = {
   title: { absolute: TITLE },
