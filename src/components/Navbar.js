@@ -13,6 +13,7 @@ const navLinks = [
   { href: "/tools/qr-generator", label: "QR Code Maker" },
   { href: "/tools/vcf-maker", label: "VCF Maker" },
   { href: "/tools/pdf-maker", label: "PDF Maker" },
+  { href: "/extensions", label: "Extensions" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -48,7 +49,7 @@ export default function Navbar() {
             </span>
           </Link>
 
-          <div className="hidden lg:flex items-center gap-6">
+          <div className="hidden xl:flex items-center gap-6">
             {links.map((link) => (
               <Link
                 key={link.href}
@@ -68,7 +69,7 @@ export default function Navbar() {
 
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden p-2 text-muted hover:text-foreground transition-colors"
+            className="xl:hidden p-2 text-muted hover:text-foreground transition-colors"
             aria-label="Toggle menu"
           >
             <svg
@@ -103,7 +104,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-background border-b border-border overflow-hidden"
+            className="xl:hidden bg-background border-b border-border overflow-hidden"
           >
             <div className="px-4 py-4 space-y-3">
               {links.map((link) => (

@@ -182,6 +182,7 @@ export default function Page() {
           <ul className="space-y-2 text-primary underline">
             <li><Link href="/tools/vcf-maker">VCF Maker: turn a spreadsheet of contacts into one file</Link></li>
             <li><Link href="/tools/pdf-maker">PDF Maker: convert images and text files to PDF</Link></li>
+            <li><Link href="/extensions/qr-studio">Ganivotech QR Studio: free Chrome extension to make and scan QR codes</Link></li>
             <li><Link href="/blog/qr-code">QR code guides</Link></li>
           </ul>
         </section>

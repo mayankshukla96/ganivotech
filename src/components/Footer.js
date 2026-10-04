@@ -19,6 +19,7 @@ const footerLinks = {
     { href: "/tools/qr-generator/wifi", label: "WiFi QR Code" },
     { href: "/tools/vcf-maker", label: "VCF Maker" },
     { href: "/tools/pdf-maker", label: "PDF Maker" },
+    { href: "/extensions", label: "Chrome Extensions" },
     { href: "/blog/qr-code", label: "QR Code Guides" },
   ],
 };

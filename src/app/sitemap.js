@@ -1,6 +1,7 @@
 import { GUIDES, SITE, TYPE_PAGES } from "@/lib/qr-content";
 import { PDF_GUIDES } from "@/lib/pdf-content";
 import { VCF_GUIDES } from "@/lib/vcf-content";
+import { EXTENSIONS } from "@/lib/extensions";
 
 const d = (s) => new Date(s);
 
@@ -11,6 +12,8 @@ export default function sitemap() {
     ...Object.keys(TYPE_PAGES).map((t) => [`/tools/qr-generator/${t}`, "2026-10-04", 0.8]),
     ["/tools/vcf-maker", "2026-10-04", 0.8],
     ["/tools/pdf-maker", "2026-10-04", 0.8],
+    ["/extensions", "2026-10-04", 0.8],
+    ...Object.keys(EXTENSIONS).map((s) => [`/extensions/${s}`, "2026-10-04", 0.7]),
     ["/blog", "2026-10-04", 0.6],
     ["/blog/qr-code", "2026-10-04", 0.7],
     ...Object.entries(GUIDES).map(([s, g]) => [`/blog/qr-code/${s}`, g.date, 0.7]),
