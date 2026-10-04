@@ -10,8 +10,7 @@ const navLinks = [
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
   { href: "/blog", label: "Blog" },
-  { href: "/worksheet", label: "Worksheet" },
-  { href: "/tools/qr-generator", label: "QR Code" },
+  { href: "/tools/qr-generator", label: "QR Code Maker" },
   { href: "/tools/vcf-maker", label: "VCF Maker" },
   { href: "/contact", label: "Contact" },
 ];

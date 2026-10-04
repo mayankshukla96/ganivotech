@@ -36,7 +36,7 @@ export default function QRGenerator() {
             Free Tool
           </p>
           <h1 className="text-4xl font-bold mb-4">
-            QR Code <span className="gradient-text">Generator</span>
+            QR Code <span className="gradient-text">Maker</span>
           </h1>
           <p className="text-muted">
             Enter any URL and get a downloadable QR code instantly.
