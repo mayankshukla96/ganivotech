@@ -18,10 +18,10 @@ export default function Page() {
 
         <h2 className={h2}>Our free tools</h2>
         <p className={p}>
-          The QR Code Maker, VCF Maker and PDF Maker work inside your browser. The details you type, the files you choose and the codes or files you create are not uploaded to or stored on our servers.
+          The QR Code Maker, VCF Maker, PDF Maker, Photo &amp; Signature Resizer, Compress to Exact Size and OCR to Excel &amp; Word work inside your browser. The details you type, the photos, documents and PDFs you choose, and the files you create are not uploaded to or stored on our servers.
         </p>
         <p className={p}>
-          The one exception is Location place search: the text you type in that box is sent to the Photon geocoding service (photon.komoot.io, based on OpenStreetMap data) to fetch suggestions. The QR code for a UPI, WiFi or contact code is never sent anywhere.
+          There are two small exceptions. In the QR Code Maker&apos;s Location option, the text you type in the place search box is sent to the Photon geocoding service (photon.komoot.io, based on OpenStreetMap data) to fetch suggestions. And the first time you use OCR to Excel &amp; Word, your browser downloads the open-source text-recognition engine and language data from a public content delivery network (cdn.jsdelivr.net), which can see that your browser requested those files. Your pictures and documents are never sent there.
         </p>
 
         <h2 className={h2}>Information we receive</h2>
