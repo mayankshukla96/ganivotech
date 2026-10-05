@@ -267,6 +267,29 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Free tools */}
+      <section className="py-16 sm:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-3xl border border-border bg-surface p-8 sm:p-12 grid lg:grid-cols-[1.3fr_1fr] gap-8 items-center">
+            <div>
+              <span className="inline-block px-3 py-1 mb-4 rounded-full bg-accent/10 text-accent text-xs font-semibold">New: Free Tool</span>
+              <h2 className="text-3xl font-bold mb-3">Short Link Maker</h2>
+              <p className="font-semibold mb-2">Short links with your own name.</p>
+              <p className="text-muted leading-relaxed mb-6">Turn a long web address into something like ganivotech.com/go/diwali-offer. Pick a name style, get a QR code, make WhatsApp chat links and see how many people clicked. Free, no signup.</p>
+              <div className="flex flex-wrap gap-3">
+                <Link href="/tools/short-link-maker" className="px-6 py-3 rounded-xl gradient-bg-orange text-white font-semibold hover:opacity-90 transition-opacity">Make a short link</Link>
+                <Link href="/tools" className="px-6 py-3 rounded-xl border border-border font-semibold hover:border-primary hover:text-primary transition-colors">All free tools</Link>
+              </div>
+            </div>
+            <div className="rounded-2xl border border-border bg-background p-5 text-center" aria-hidden="true">
+              <p className="text-xs text-muted mb-1 break-all">https://shop.example.in/offers/festival/sweets-box?utm_source=whatsapp&amp;ref=12345</p>
+              <p className="text-2xl text-muted mb-1">&darr;</p>
+              <p className="text-sm sm:text-lg font-bold text-primary break-all">ganivotech.com/go/diwali-offer</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Premium products */}
       <section className="py-16 sm:py-20 bg-surface border-y border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
