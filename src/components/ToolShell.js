@@ -24,7 +24,7 @@ export default function ToolShell({ t, crumbs, children, extra }) {
           <header className="text-center mb-8">
             <h1 className="text-4xl sm:text-5xl font-bold mb-4">{t.h1}</h1>
             <p className="text-muted max-w-2xl mx-auto">{t.intro}</p>
-            <p className="mt-3 text-sm font-medium text-primary">Free &bull; No signup &bull; Your files never leave your device</p>
+            <p className="mt-3 text-sm font-medium text-primary">{t.note || "Free • No signup • Your files never leave your device"}</p>
           </header>
           {children}
         </div>

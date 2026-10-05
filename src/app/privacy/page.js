@@ -12,7 +12,7 @@ export default function Page() {
     <section className="py-16">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-4xl font-bold mb-2">Privacy Policy</h1>
-        <p className="text-xs text-muted mb-8">Last updated: 4 October 2026</p>
+        <p className="text-xs text-muted mb-8">Last updated: 5 October 2026</p>
 
         <p className={p}>Ganivotech (&quot;we&quot;) runs ganivotech.com. This page explains what happens to information when you use the site.</p>
 
@@ -22,6 +22,11 @@ export default function Page() {
         </p>
         <p className={p}>
           There are two small exceptions. In the QR Code Maker&apos;s Location option, the text you type in the place search box is sent to the Photon geocoding service (photon.komoot.io, based on OpenStreetMap data) to fetch suggestions. And the first time you use OCR to Excel &amp; Word, your browser downloads the open-source text-recognition engine and language data from a public content delivery network (cdn.jsdelivr.net), which can see that your browser requested those files. Your pictures and documents are never sent there.
+        </p>
+
+        <h2 className={h2}>Short Link Maker</h2>
+        <p className={p}>
+          Unlike our other tools, the Short Link Maker has to keep what you give it, because a short link only works if we remember where it goes. We store the destination address, the name you chose, the optional title, an expiry date, a one-way hash of your manage key (we cannot see the key itself) and a daily-changing anonymous visitor hash that limits how many links one person can make. Each click on a short link records only the time, the site it came from, the device type and the country. Visits by search and preview bots are ignored and no IP address is stored. Anyone can report a link, and reported or abusive links can be switched off or removed. You can delete your link at any time with its manage key, which also deletes its click records.
         </p>
 
         <h2 className={h2}>Information we receive</h2>

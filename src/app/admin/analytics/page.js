@@ -1,5 +1,6 @@
 import { authConfigured, isAdmin } from "@/lib/admin-auth";
 import { dbConfigured, q } from "@/lib/analytics-db";
+import AdminLinkActions from "@/components/AdminLinkActions";
 import { bucketKeys, countryName, flag, fmtIST, istDateString, resolveRange } from "@/lib/analytics-utils";
 
 export const dynamic = "force-dynamic";
@@ -22,7 +23,7 @@ async function load(range) {
   const w = "ts >= $1 AND ts < $2";
   const p = [range.from, range.to];
   const fmt = { hour: "YYYY-MM-DD HH24:00", day: "YYYY-MM-DD", month: "YYYY-MM" }[range.gran];
-  const [totals, bounce, series, pages, entries, exits, flows, sources, mediums, countries, cities, devices, browsers, systems, recent, ideas, leads] = await Promise.all([
+  const [totals, bounce, series, pages, entries, exits, flows, sources, mediums, countries, cities, devices, browsers, systems, recent, ideas, leads, shorts] = await Promise.all([
     q(`SELECT count(*)::int views, count(DISTINCT vid)::int visitors FROM pageviews WHERE ${w}`, p),
     q(`SELECT count(*)::int n FROM (SELECT vid FROM pageviews WHERE ${w} GROUP BY vid HAVING count(*) = 1) t`, p),
     q(`SELECT to_char(date_trunc('${range.gran}', ts AT TIME ZONE 'Asia/Kolkata'), '${fmt}') k, count(*)::int views, count(DISTINCT vid)::int visitors FROM pageviews WHERE ${w} GROUP BY 1`, p),
@@ -41,8 +42,9 @@ async function load(range) {
     q(`SELECT ts, path, source, medium, country, region, city, device, browser FROM pageviews WHERE ${w} ORDER BY ts DESC, id DESC LIMIT 40`, p),
     q("SELECT ts, name, idea, source FROM suggestions ORDER BY ts DESC, id DESC LIMIT 20"),
     q("SELECT ts, product, name, phone, email, business, details, message, alert_error FROM leads ORDER BY ts DESC, id DESC LIMIT 50"),
+    q("SELECT l.alias, l.url, l.title, l.created, l.clicks, l.disabled, (SELECT count(*)::int FROM short_reports r WHERE r.link_id = l.id) reports FROM short_links l ORDER BY l.created DESC LIMIT 30"),
   ]);
-  return { totals: totals[0], bounce: bounce[0].n, series, pages, entries, exits, flows, sources, mediums, countries, cities, devices, browsers, systems, recent, ideas, leads };
+  return { totals: totals[0], bounce: bounce[0].n, series, pages, entries, exits, flows, sources, mediums, countries, cities, devices, browsers, systems, recent, ideas, leads, shorts };
 }
 
 function Card({ title, children, className = "" }) {
@@ -313,6 +315,25 @@ export default async function Page({ searchParams }) {
           </ul>
         ) : (
           <p className="text-sm text-muted">No leads yet. SellerSync pilot applications and Contact page messages arrive here.</p>
+        )}
+      </Card>
+
+      <Card title="Short links (latest 30, newest first)" className="mt-6">
+        {d.shorts.length ? (
+          <ul className="space-y-3">
+            {d.shorts.map((l) => (
+              <li key={l.alias} className="text-sm border-b border-border/60 pb-3 last:border-0 last:pb-0 flex flex-wrap items-center justify-between gap-2">
+                <div className="min-w-0">
+                  <p className="font-semibold break-all">/go/{l.alias} {l.disabled && <span className="text-xs text-red-600">switched off</span>} {l.reports > 0 && <span className="text-xs text-red-600">{l.reports} report{l.reports > 1 ? "s" : ""}</span>}</p>
+                  <p className="text-xs text-muted break-all">{l.title ? `${l.title} → ` : ""}{l.url}</p>
+                  <p className="text-xs text-muted">{n(l.clicks)} clicks &bull; {fmtIST(l.created)}</p>
+                </div>
+                <AdminLinkActions alias={l.alias} disabled={l.disabled} />
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-sm text-muted">No short links yet. Links made with the Short Link Maker appear here, so you can switch off anything unsafe.</p>
         )}
       </Card>
 

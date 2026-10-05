@@ -14,6 +14,7 @@ export default function sitemap() {
     ["/tools/vcf-maker", "2026-10-04", 0.8],
     ["/tools/pdf-maker", "2026-10-04", 0.8],
     ["/tools", "2026-10-04", 0.8],
+    ["/tools/short-link-maker", "2026-10-05", 0.9],
     ["/tools/photo-signature-resizer", "2026-10-04", 0.9],
     ["/tools/photo-signature-resizer/signature", "2026-10-04", 0.8],
     ["/tools/compress-to-exact-size", "2026-10-04", 0.9],

@@ -3,6 +3,7 @@
 export const TOOLS = [
   { href: "/tools/qr-generator", name: "QR Code Maker", blurb: "Free QR codes for links, WiFi, WhatsApp, UPI and more, with logo and styles." },
   { href: "/tools/bulk-qr-code-generator", name: "Bulk QR from Excel", blurb: "Make hundreds of QR codes from an Excel or CSV list, as a ZIP or printable A4 sheets." },
+  { href: "/tools/short-link-maker", name: "Short Link Maker", blurb: "Shorten a link with your own custom name, get a QR code and see how many people clicked." },
   { href: "/tools/photo-signature-resizer", name: "Photo & Signature Resizer", blurb: "Resize a photo or signature to the exact KB and size an online form asks for." },
   { href: "/tools/compress-to-exact-size", name: "Compress to Exact Size", blurb: "Make a picture or PDF smaller than, or exactly, 50 KB, 100 KB, 200 KB or any size." },
   { href: "/tools/ocr-to-excel-word", name: "OCR to Excel & Word", blurb: "Turn a photo, scan or PDF into an Excel sheet or Word file. English and Hindi." },
@@ -190,4 +191,37 @@ export const BULK_TYPES = {
       ["How do I put the codes on ID cards?", "Download the PNG or SVG ZIP and place each image in your card design, or print the A4 sheets as stickers."],
     ],
   },
+};
+
+export const SHORT = {
+  path: "/tools/short-link-maker",
+  title: "Free Short Link Maker – Custom Short URL & QR | GanivoTech",
+  description: "Make a short link with your own custom name, like ganivotech.com/go/diwali-offer. Free, no signup. Get a QR code, WhatsApp chat links and click stats.",
+  h1: "Short Link Maker: Short Links With Your Own Name",
+  intro: "Turn a long web address into a short one that is easy to say, type and remember. Choose your own name for it, such as diwali-offer, or let the tool suggest names in the style you like.",
+  note: "Free • No signup • Click stats included",
+  steps: [
+    "Paste your long link, or switch to WhatsApp chat to make a link that opens a chat with your message already typed.",
+    "Pick a name style (from your title, brand plus a word, two words, easy to say, with the month, or a short code) and tap an idea, or type your own name. A tick shows the name is free.",
+    "Choose when the link should expire, then press Make short link.",
+    "Copy the link, share it on WhatsApp, or download its QR code. Open My links any time to see clicks.",
+  ],
+  tips: [
+    "Use a name that says what the link is for, such as sharma-menu. People trust links they can read.",
+    "Add campaign tags if you use Google Analytics, so you can see which post or message brought each visitor.",
+    "Put the QR code on posters, menus and visiting cards. The code holds the short link, so you can switch the destination off later.",
+    "Save your manage key. It is the only way to see stats or delete the link from another phone or computer.",
+    "Pick an expiry for offers and events so an old link does not keep sending people to a finished page.",
+  ],
+  faqs: [
+    ["Is the Short Link Maker free?", "Yes. Making links, custom names, QR codes and click stats are free, with no signup."],
+    ["Can I choose my own link name?", "Yes. Type any name of 3 to 32 English letters, numbers and hyphens, for example ganivotech.com/go/my-shop. If the name is taken, the tool shows ideas that are free."],
+    ["How long does a short link last?", "It lasts until you set it to expire, you delete it, or it is removed for abuse. If you choose Never, there is no end date."],
+    ["Do I need an account?", "No. When you make a link you get a manage key that proves it is yours. It is saved in your browser and you can copy it to use elsewhere. We cannot recover a lost key."],
+    ["What do the click stats show?", "The number of clicks, clicks per day for two weeks, and where people came from, their device type and country. Visits by search bots are not counted. We do not store IP addresses."],
+    ["Why are some names not allowed?", "Names that look like banks, payment apps, OTP or prize messages are blocked, together with offensive words, to stop scams and keep the service safe for everyone."],
+    ["Can anyone check where a short link goes?", "Yes. Add /preview to the end of any short link, for example ganivotech.com/go/my-shop/preview, to see the real destination before opening it, and to report it if it looks unsafe."],
+    ["Can I shorten a link that is already shortened?", "No. Paste the full original link, so people can be shown where it really goes."],
+    ["Can I change where a link goes later?", "Not yet. You can switch a link off or delete it and make a new one with another name."],
+  ],
 };

@@ -19,6 +19,7 @@ const footerLinks = {
     { href: "/tools/qr-generator", label: "Free QR Code Generator" },
     { href: "/tools/qr-generator/wifi", label: "WiFi QR Code" },
     { href: "/tools/bulk-qr-code-generator", label: "Bulk QR from Excel" },
+    { href: "/tools/short-link-maker", label: "Short Link Maker" },
     { href: "/tools/vcf-maker", label: "VCF Maker" },
     { href: "/tools/pdf-maker", label: "PDF Maker" },
     { href: "/tools/photo-signature-resizer", label: "Photo & Signature Resizer" },

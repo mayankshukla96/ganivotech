@@ -12,7 +12,7 @@ export default function Page() {
     <section className="py-16">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-4xl font-bold mb-2">Terms of Service</h1>
-        <p className="text-xs text-muted mb-8">Last updated: 4 October 2026</p>
+        <p className="text-xs text-muted mb-8">Last updated: 5 October 2026</p>
 
         <h2 className={h2}>Using the site</h2>
         <p className={p}>By using ganivotech.com you agree to these terms. The free tools are provided for lawful use only.</p>
@@ -20,6 +20,11 @@ export default function Page() {
         <h2 className={h2}>Your content</h2>
         <p className={p}>
           You are responsible for what you put into a QR code, contact file or PDF, and for having the right to share it. Do not use the tools for illegal content, scams, phishing or to impersonate others.
+        </p>
+
+        <h2 className={h2}>Short links</h2>
+        <p className={p}>
+          Short links on ganivotech.com/go must not lead to scams, phishing, malware, adult or illegal content, or imitate a bank, payment app or other company. We may switch off or delete any link, without notice, if it is reported or if we think it is unsafe, and we may limit how many links one person can make. Short links are provided free and without a promise that they will always work.
         </p>
 
         <h2 className={h2}>No warranty</h2>

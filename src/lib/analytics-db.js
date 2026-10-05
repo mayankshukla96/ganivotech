@@ -51,7 +51,32 @@ export async function ensureSchema() {
           message TEXT,
           vid TEXT
         );
-        ALTER TABLE leads ADD COLUMN IF NOT EXISTS alert_error TEXT;`
+        ALTER TABLE leads ADD COLUMN IF NOT EXISTS alert_error TEXT;
+        CREATE TABLE IF NOT EXISTS short_links (
+          id BIGSERIAL PRIMARY KEY,
+          alias TEXT NOT NULL UNIQUE,
+          url TEXT NOT NULL,
+          title TEXT,
+          key_hash TEXT NOT NULL,
+          created TIMESTAMPTZ NOT NULL DEFAULT now(),
+          expires TIMESTAMPTZ,
+          clicks INT NOT NULL DEFAULT 0,
+          disabled BOOLEAN NOT NULL DEFAULT false,
+          vid TEXT
+        );
+        CREATE TABLE IF NOT EXISTS short_clicks (
+          id BIGSERIAL PRIMARY KEY,
+          link_id BIGINT NOT NULL,
+          ts TIMESTAMPTZ NOT NULL DEFAULT now(),
+          source TEXT, device TEXT, country TEXT
+        );
+        CREATE INDEX IF NOT EXISTS short_clicks_link_idx ON short_clicks (link_id, ts);
+        CREATE TABLE IF NOT EXISTS short_reports (
+          link_id BIGINT NOT NULL,
+          vid TEXT NOT NULL,
+          ts TIMESTAMPTZ NOT NULL DEFAULT now(),
+          PRIMARY KEY (link_id, vid)
+        );`
       )
       .catch((e) => {
         g.__gtSchema = null;
