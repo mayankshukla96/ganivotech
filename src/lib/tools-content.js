@@ -5,6 +5,7 @@ export const TOOLS = [
   { href: "/tools/bulk-qr-code-generator", name: "Bulk QR from Excel", blurb: "Make hundreds of QR codes from an Excel or CSV list, as a ZIP or printable A4 sheets." },
   { href: "/tools/short-link-maker", name: "Short Link Maker", blurb: "Shorten a link with your own custom name, get a QR code and see how many people clicked." },
   { href: "/tools/pdf-tools", name: "PDF Toolkit", blurb: "Merge, split, unlock, protect, watermark and number PDFs, or turn them into pictures. Nothing is uploaded." },
+  { href: "/tools/passport-photo-maker", name: "Passport Photo Maker", blurb: "Crop passport and ID photos, whiten the background and print many copies on one sheet." },
   { href: "/tools/photo-signature-resizer", name: "Photo & Signature Resizer", blurb: "Resize a photo or signature to the exact KB and size an online form asks for." },
   { href: "/tools/compress-to-exact-size", name: "Compress to Exact Size", blurb: "Make a picture or PDF smaller than, or exactly, 50 KB, 100 KB, 200 KB or any size." },
   { href: "/tools/ocr-to-excel-word", name: "OCR to Excel & Word", blurb: "Turn a photo, scan or PDF into an Excel sheet or Word file. English and Hindi." },
@@ -224,5 +225,34 @@ export const SHORT = {
     ["Can anyone check where a short link goes?", "Yes. Add /preview to the end of any short link, for example ganivotech.com/go/my-shop/preview, to see the real destination before opening it, and to report it if it looks unsafe."],
     ["Can I shorten a link that is already shortened?", "No. Paste the full original link, so people can be shown where it really goes."],
     ["Can I change where a link goes later?", "Not yet. You can switch a link off or delete it and make a new one with another name."],
+  ],
+};
+
+export const PASSPORT = {
+  path: "/tools/passport-photo-maker",
+  title: "Passport Size Photo Maker – White Background, Print Sheet",
+  description: "Make a passport or ID photo at home: crop to 35x45 mm or 51x51 mm, whiten the background, set the KB limit and print many copies on 4x6 or A4. Free, private.",
+  h1: "Passport Size Photo Maker: Crop, White Background, Print Sheet",
+  intro: "Turn a selfie into a passport, visa or ID photo. Crop to the right size, clean the background to white, keep the file under the size limit, and print several copies on one sheet.",
+  steps: [
+    "Choose a clear photo taken in good light against a plain, light wall.",
+    "Pick the photo size, or type your own in millimetres, then drag and zoom so your face sits inside the dotted oval.",
+    "Keep Make the background white ticked and adjust the strength until the background is clean.",
+    "Download the single photo as a JPG (set the largest file size the form allows), or make a 4x6 or A4 sheet to print.",
+  ],
+  tips: [
+    "Face the camera straight on with your eyes open, no shadows on the face or wall, and no glasses glare.",
+    "Photos for official forms must follow that form's rules. Check the size, background and file size on the form itself before you submit.",
+    "When printing the sheet, choose actual size or 100%, not fit to page, so each photo prints at the real size.",
+    "The white background step is a colour clean-up, not artificial intelligence. A plain wall gives the best result.",
+    "Use 300 DPI for printing. 200 DPI is enough for most online uploads.",
+  ],
+  faqs: [
+    ["Is my photo uploaded anywhere?", "No. The photo is edited inside your browser and never leaves your device."],
+    ["What size is an Indian passport photo?", "The Indian passport photo is 51 x 51 mm (2 x 2 inch) with a plain white or off-white background. For online upload the file is usually between 20 and 100 KB. Always confirm on the official instructions, because rules can change."],
+    ["Does it remove the background automatically?", "It turns a plain background white by finding the colour at the edges of the picture and painting over it. This works best on an even light wall. It is not an artificial intelligence cut-out, so busy backgrounds may leave marks."],
+    ["How do I print passport photos at home?", "Download the sheet as JPG or PDF, print it at actual size on 4x6 photo paper or A4, and cut along the thin lines."],
+    ["Can I set the file size, for example under 50 KB?", "Yes. Type the largest size in KB before you download. The photo is compressed until it fits."],
+    ["Will this photo be accepted for my application?", "We cannot promise that. It makes the size and background you choose, but each office decides. Follow the official guidelines for your application."],
   ],
 };
