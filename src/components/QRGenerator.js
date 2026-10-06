@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { QR_TYPES, typeHref } from "@/lib/qr-builders";
+import LinkPageForm from "@/components/LinkPageForm";
 import { qrToSvg, svgToDataUrl, svgToPngBlob, contrast } from "@/lib/qr-svg";
 
 const PRESETS = {
@@ -133,6 +134,7 @@ export default function QRGenerator({ type = "url" }) {
         <div className="space-y-6">
           <div className="rounded-2xl border border-border bg-surface p-5 sm:p-6">
             <h2 className="text-lg font-semibold mb-4">1. Enter your {cfg.label} details</h2>
+            {cfg.custom === "links" && <LinkPageForm fields={fields} setFields={setFields} />}
             {cfg.fields.map(([key, label, ph, kind]) => (
               <div key={key} className="mb-4">
                 <label htmlFor={`f-${key}`} className="block text-sm font-medium mb-1.5">
@@ -284,7 +286,7 @@ export default function QRGenerator({ type = "url" }) {
               <img src={svgToDataUrl(svg)} alt={`Generated ${cfg.label} QR code`} width={300} height={300} className="w-full h-full" />
             ) : (
               <p className="text-sm text-muted px-6" aria-live="polite">
-                {error || "Fill in the details and your QR code appears here instantly."}
+                {error || (cfg.custom ? "Fill in your links and press Create QR code." : "Fill in the details and your QR code appears here instantly.")}
               </p>
             )}
           </div>
@@ -307,8 +309,8 @@ export default function QRGenerator({ type = "url" }) {
             </button>
           </div>
           <p className="mt-4 text-xs text-muted">
-            Generated in your browser. Your details are not uploaded
-            {type === "location" ? ", except the text you type in place search, which goes to the free Photon (OpenStreetMap) service." : "."}
+            {cfg.custom ? "The QR code is made in your browser. Your links are saved on our server so the page can open when scanned" : "Generated in your browser. Your details are not uploaded"}
+            {cfg.custom ? "." : type === "location" ? ", except the text you type in place search, which goes to the free Photon (OpenStreetMap) service." : "."}
           </p>
         </div>
       </div>

@@ -14,6 +14,21 @@ export const MAIN_FAQS = [
 ];
 
 export const TYPE_PAGES = {
+  "multiple-links": {
+    title: "One QR Code for Multiple Links – Free Link Page QR | GanivoTech",
+    description: "Make one QR code that opens a page with all your links: Instagram, WhatsApp, website, menu and more. Free, no signup, with click stats.",
+    h1: "One QR Code for Multiple Links",
+    intro: "Put your Instagram, WhatsApp, website, menu and location behind a single QR code. Scanning it opens a clean page with a button for each link, so you print only one code.",
+    steps: ["Give your page a title and add 2 to 12 links, each with a button name.", "Optionally choose a name for the address, such as sharma-sweets.", "Press Create QR code, style it, and download the PNG or SVG.", "Print it on a menu, card or shop board. Use the Short Link Maker to see how many people scanned."],
+    uses: ["Restaurant and cafe tables: menu, Google review, Instagram and order on WhatsApp", "Visiting cards with website, WhatsApp, location and social profiles", "Shop counters and posters with several offers or pages", "Events with schedule, map, registration and contact links"],
+    faqs: [
+      ["How can one QR code open many links?", "The code holds the short address of a small page we host for you. That page shows a button for each of your links. People scan once and choose the link they want."],
+      ["Can I change the links later?", "Not yet. Make a new page for new links. You can switch the old page off or delete it with your manage key."],
+      ["Is it free? Does it expire?", "It is free with no signup. The page stays until you set it to expire, delete it, or it is removed for abuse."],
+      ["Can I see how many people scanned?", "Yes. Open the Short Link Maker, find your page under My links and tap Stats for scans per day, devices and countries."],
+      ["Are there rules about the links?", "Links must be public http or https addresses. Look-alike domains, IP addresses and already-shortened links are not allowed, and pages reported as unsafe are switched off."],
+    ],
+  },
   text: {
     title: "Free Text QR Code Generator – Plain Text to QR | GanivoTech",
     description: "Turn any text, note or code into a QR code. Free text QR generator with colours, logo and SVG or PNG download. No signup, runs in your browser.",

@@ -64,6 +64,7 @@ export async function ensureSchema() {
           disabled BOOLEAN NOT NULL DEFAULT false,
           vid TEXT
         );
+        ALTER TABLE short_links ADD COLUMN IF NOT EXISTS page JSONB;
         CREATE TABLE IF NOT EXISTS short_clicks (
           id BIGSERIAL PRIMARY KEY,
           link_id BIGINT NOT NULL,

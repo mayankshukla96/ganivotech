@@ -31,6 +31,25 @@ export function checkDestination(input) {
   return { ok: true, url: u.toString() };
 }
 
+/** A link page: a title and up to 12 labelled links. Returns { ok, page } (cleaned) or { ok: false, error }. */
+export function checkPage(p) {
+  const title = String(p?.title ?? "").trim().slice(0, 60);
+  if (!title) return { ok: false, error: "Give your page a title." };
+  const raw = Array.isArray(p?.links) ? p.links : [];
+  const links = [];
+  for (const [i, l] of raw.entries()) {
+    const label = String(l?.label ?? "").trim().slice(0, 40);
+    if (!label && !String(l?.url ?? "").trim()) continue; // empty row
+    const d = checkDestination(l?.url);
+    if (!d.ok) return { ok: false, error: `Link ${i + 1}: ${d.error}` };
+    if (!label) return { ok: false, error: `Link ${i + 1}: add a name for the button.` };
+    links.push({ label, url: d.url });
+  }
+  if (links.length < 2) return { ok: false, error: "Add at least two links." };
+  if (links.length > 12) return { ok: false, error: "A page can hold up to 12 links." };
+  return { ok: true, page: { title, desc: String(p?.desc ?? "").trim().slice(0, 140), links } };
+}
+
 // ---- alias ------------------------------------------------------------------
 const RESERVED = new Set(["admin", "api", "preview", "stats", "null", "undefined", "www", "help", "support", "about", "contact", "terms", "privacy", "tools", "go", "ganivotech", "home", "index"]);
 // Names that scammers use to pretend to be a bank, wallet or prize. Blocked as whole words (tokens) or as parts of a name.

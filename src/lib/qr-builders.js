@@ -130,4 +130,11 @@ export const QR_TYPES = {
   },
 };
 
+QR_TYPES["multiple-links"] = {
+  label: "Multiple Links",
+  custom: "links", // has its own form: the page is saved on this site and the code holds its short address
+  fields: [],
+  build: (f) => f.short || "",
+};
+
 export const typeHref = (id) => (id === "url" ? "/tools/qr-generator" : `/tools/qr-generator/${id}`);

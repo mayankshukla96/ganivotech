@@ -1,5 +1,5 @@
 import { dbConfigured, q } from "@/lib/analytics-db";
-import { EXPIRY, absolute, aliasProblem, checkDestination, randomAlias } from "@/lib/short-links";
+import { BASE, EXPIRY, absolute, aliasProblem, checkDestination, checkPage, randomAlias } from "@/lib/short-links";
 import { hashKey, json, newKey, sameSite, visitorId } from "@/lib/short-server";
 
 export async function POST(req) {
@@ -14,7 +14,10 @@ export async function POST(req) {
     if (!b || typeof b !== "object") return json({ ok: false, error: "Invalid request." }, 400);
     if (String(b.website ?? "").trim()) return json({ ok: true, alias: "x", short: "", key: "" }); // honeypot
 
-    const dest = checkDestination(b.url);
+    // a link page (one QR code, many links) has no destination of its own: the short link opens the page
+    const pg = b.page ? checkPage(b.page) : null;
+    if (pg && !pg.ok) return json({ ok: false, error: pg.error, field: "page" }, 400);
+    const dest = pg ? { ok: true } : checkDestination(b.url);
     if (!dest.ok) return json({ ok: false, error: dest.error, field: "url" }, 400);
     const title = String(b.title ?? "").trim().slice(0, 80);
     if (!(b.expires in EXPIRY)) return json({ ok: false, error: "Invalid request." }, 400);
@@ -38,12 +41,12 @@ export async function POST(req) {
     for (let i = 0; i < 6; i++) {
       const tryAlias = alias || randomAlias();
       const rows = await q(
-        `INSERT INTO short_links (alias, url, title, key_hash, expires, vid)
-         VALUES ($1,$2,$3,$4, CASE WHEN $5::int IS NULL THEN NULL ELSE now() + make_interval(days => $5::int) END, $6)
+        `INSERT INTO short_links (alias, url, title, key_hash, expires, vid, page)
+         VALUES ($1,$2,$3,$4, CASE WHEN $5::int IS NULL THEN NULL ELSE now() + make_interval(days => $5::int) END, $6, $7)
          ON CONFLICT (alias) DO NOTHING RETURNING alias, expires`,
-        [tryAlias, dest.url, title || null, hashKey(key), days, vid]
+        [tryAlias, pg ? `${BASE}/l/${tryAlias}` : dest.url, pg ? pg.page.title : title || null, hashKey(key), days, vid, pg ? JSON.stringify(pg.page) : null]
       );
-      if (rows.length) return json({ ok: true, alias: rows[0].alias, short: absolute(rows[0].alias), key, url: dest.url, expires: rows[0].expires });
+      if (rows.length) return json({ ok: true, alias: rows[0].alias, short: absolute(rows[0].alias), key, url: pg ? `${BASE}/l/${rows[0].alias}` : dest.url, expires: rows[0].expires });
       if (alias) return json({ ok: false, error: "That name is already taken. Pick another, or choose one of the ideas.", field: "alias" }, 409);
     }
     return json({ ok: false, error: "Could not make a link. Please try again." }, 500);
