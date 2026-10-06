@@ -4,8 +4,8 @@ let pdfjsPromise;
 export function loadPdfJs() {
   if (!pdfjsPromise) {
     // loaded at runtime from /public so the bundler does not need to process the large worker
-    const dynamicImport = new Function("u", "return import(u)");
-    pdfjsPromise = dynamicImport("/pdfjs/pdf.min.mjs").then((m) => {
+    // (a plain import the bundler is told to leave alone: the site's security policy forbids building code from strings)
+    pdfjsPromise = import(/* webpackIgnore: true */ /* turbopackIgnore: true */ "/pdfjs/pdf.min.mjs").then((m) => {
       m.GlobalWorkerOptions.workerSrc = "/pdfjs/pdf.worker.min.mjs";
       return m;
     });
@@ -13,16 +13,25 @@ export function loadPdfJs() {
   return pdfjsPromise;
 }
 
-export async function openPdf(file) {
+/** Open a PDF for viewing. A locked file rejects with name "PasswordException" (code 1 = password needed, 2 = wrong password). */
+export async function openPdf(file, password) {
   const pdfjs = await loadPdfJs();
-  return pdfjs.getDocument({ data: new Uint8Array(await file.arrayBuffer()) }).promise;
+  // isEvalSupported off: a PDF is untrusted input, so pdf.js must never build code from it
+  return pdfjs.getDocument({ data: new Uint8Array(await file.arrayBuffer()), password: password || undefined, isEvalSupported: false }).promise;
 }
 
-/** Render page `n` (1-based) so its longest side is about `maxSide` pixels. Returns { canvas, ptW, ptH }. */
-export async function renderPage(doc, n, maxSide = 1600) {
+const MAX_PIXELS = 36e6; // keeps a single page inside what phone browsers can hold as one canvas
+
+/**
+ * Render page `n` (1-based) so its longest side is about `maxSide` pixels, or at `dpi` when given.
+ * Returns { canvas, ptW, ptH } where ptW x ptH is the page size in points as shown on screen.
+ */
+export async function renderPage(doc, n, maxSide = 1600, dpi = 0) {
   const page = await doc.getPage(n);
   const base = page.getViewport({ scale: 1 });
-  const scale = Math.min(4, maxSide / Math.max(base.width, base.height));
+  const scale = dpi
+    ? Math.min(dpi / 72, Math.sqrt(MAX_PIXELS / (base.width * base.height)))
+    : Math.min(4, maxSide / Math.max(base.width, base.height));
   const viewport = page.getViewport({ scale });
   const canvas = document.createElement("canvas");
   canvas.width = Math.ceil(viewport.width);
@@ -96,3 +105,8 @@ export function buildPdf(pages, padTo = 0) {
   for (const c of chunks) { out.set(c, p); p += c.length; }
   return out;
 }
+
+// Hands a finished file to the next tool page. It only lives in this tab's memory and is cleared as soon as it is picked up.
+let handoff = null;
+export const setHandoff = (file) => { handoff = file; };
+export const takeHandoff = () => { const f = handoff; handoff = null; return f; };

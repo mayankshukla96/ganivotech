@@ -21,6 +21,7 @@ const footerLinks = {
     { href: "/tools/bulk-qr-code-generator", label: "Bulk QR from Excel" },
     { href: "/tools/short-link-maker", label: "Short Link Maker" },
     { href: "/tools/vcf-maker", label: "VCF Maker" },
+    { href: "/tools/pdf-tools", label: "PDF Toolkit" },
     { href: "/tools/pdf-maker", label: "PDF Maker" },
     { href: "/tools/photo-signature-resizer", label: "Photo & Signature Resizer" },
     { href: "/tools/compress-to-exact-size", label: "Compress to Exact Size" },
@@ -53,6 +54,11 @@ export default function Footer() {
               Empowering businesses with innovative IT solutions. Your trusted
               technology partner for growth and digital transformation.
             </p>
+            <address className="mt-4 text-sm text-muted leading-relaxed not-italic">
+              C58, Garden City, Jagatpura, Jaipur, Rajasthan, India
+              <br />
+              <a href="tel:+919887402309" className="hover:text-primary transition-colors">+91 98874 02309</a>
+            </address>
           </div>
 
           {Object.entries(footerLinks).map(([title, links]) => (

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import FileDrop from "@/components/FileDrop";
 import { KB, downloadBlob, drawToCanvas, encodeToSize, fmtBytes, loadBitmap, toJpeg } from "@/lib/image-tools";
-import { buildPdf, openPdf, renderPage } from "@/lib/pdf-tools";
+import { buildPdf, openPdf, renderPage, takeHandoff } from "@/lib/pdf-tools";
 
 const MAX_PAGES = 20;
 const PRESETS = [["50 KB", 50 * KB], ["100 KB", 100 * KB], ["200 KB", 200 * KB], ["500 KB", 500 * KB], ["1 MB", KB * KB], ["2 MB", 2 * KB * KB]];
@@ -72,6 +72,8 @@ export default function ExactSizeTool({ initialTarget = 200 * KB }) {
   const [res, setRes] = useState(null);
 
   useEffect(() => () => res?.url && URL.revokeObjectURL(res.url), [res]);
+  // a file sent here from the PDF Toolkit
+  useEffect(() => { const f = takeHandoff(); if (f) setFile(f); }, []);
 
   const setPreset = (b) => { setTarget(b); setUnit(b >= KB * KB ? "MB" : "KB"); setCustom(String(b >= KB * KB ? b / KB / KB : b / KB)); };
   const onCustom = (v, u = unit) => { setCustom(v); setUnit(u); setTarget(Math.round(Number(v) * (u === "MB" ? KB * KB : KB))); };

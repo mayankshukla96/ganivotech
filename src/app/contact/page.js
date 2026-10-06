@@ -21,8 +21,8 @@ const contactInfo = [
       </svg>
     ),
     label: "Phone",
-    value: "+91 XXXXX XXXXX",
-    href: "tel:+91XXXXXXXXXX",
+    value: "+91 98874 02309",
+    href: "tel:+919887402309",
   },
   {
     icon: (
@@ -31,8 +31,8 @@ const contactInfo = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
       </svg>
     ),
-    label: "Location",
-    value: "India",
+    label: "Address",
+    value: "C58, Garden City, Jagatpura, Jaipur, Rajasthan, India",
     href: null,
   },
 ];

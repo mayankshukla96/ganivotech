@@ -67,7 +67,9 @@ export default function PDFMaker() {
     const m = margins[margin];
     const size = pageSize === "letter" ? "letter" : pageSize === "legal" ? "legal" : "A4";
 
-    let html = `<!DOCTYPE html><html><head><title>PDF - Ganivotech</title><style>
+    // The print window shares this site's origin, and an HTML file the user adds is written into it as is.
+    // This policy stops any script inside such a file from running and stops the page from loading anything from the internet.
+    let html = `<!DOCTYPE html><html><head><meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data: blob:; style-src 'unsafe-inline'; font-src data:; base-uri 'none'; form-action 'none'"><title>PDF - Ganivotech</title><style>
 @page { size: ${size} ${orientation}; margin: ${m}; }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: 'Segoe UI', Arial, sans-serif; color: #1e293b; }
@@ -82,7 +84,7 @@ body { font-family: 'Segoe UI', Arial, sans-serif; color: #1e293b; }
 
     files.forEach((f) => {
       if (f.type === "image") {
-        html += `<div class="page"><img src="${f.data}" alt="${f.name}"></div>`;
+        html += `<div class="page"><img src="${f.data}" alt=""></div>`;
       } else {
         const ext = f.name.split(".").pop().toLowerCase();
         if (ext === "html" || ext === "htm") {
@@ -100,6 +102,7 @@ body { font-family: 'Segoe UI', Arial, sans-serif; color: #1e293b; }
     html += "</body></html>";
 
     const w = window.open("", "_blank");
+    if (!w) return alert("Your browser blocked the print window. Please allow pop-ups for this site and try again.");
     w.document.write(html);
     w.document.close();
     setTimeout(() => w.print(), 500);

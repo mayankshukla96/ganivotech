@@ -3,6 +3,7 @@ import { PDF_GUIDES } from "@/lib/pdf-content";
 import { VCF_GUIDES } from "@/lib/vcf-content";
 import { EXTENSIONS } from "@/lib/extensions";
 import { BULK_TYPES, SIZES } from "@/lib/tools-content";
+import { PDF_OPS } from "@/lib/pdf-toolkit-content";
 
 const d = (s) => new Date(s);
 
@@ -15,6 +16,8 @@ export default function sitemap() {
     ["/tools/pdf-maker", "2026-10-04", 0.8],
     ["/tools", "2026-10-04", 0.8],
     ["/tools/short-link-maker", "2026-10-05", 0.9],
+    ["/tools/pdf-tools", "2026-10-05", 0.9],
+    ...Object.values(PDF_OPS).map((t) => [t.path, "2026-10-05", 0.8]),
     ["/tools/photo-signature-resizer", "2026-10-04", 0.9],
     ["/tools/photo-signature-resizer/signature", "2026-10-04", 0.8],
     ["/tools/compress-to-exact-size", "2026-10-04", 0.9],
