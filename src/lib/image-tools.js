@@ -6,6 +6,7 @@ export const loadBitmap = (file) => createImageBitmap(file, { imageOrientation: 
 
 const toBlob = (canvas, type, q) => new Promise((res, rej) => canvas.toBlob((b) => (b ? res(b) : rej(new Error("encode failed"))), type, q));
 export const toJpeg = (canvas, q) => toBlob(canvas, "image/jpeg", q);
+export const toWebp = (canvas, q) => toBlob(canvas, "image/webp", q);
 export const toPng = (canvas) => toBlob(canvas, "image/png");
 
 // whiten a paper background (for signatures): scale so the paper level becomes white, then snap near-white to white

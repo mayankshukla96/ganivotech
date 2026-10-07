@@ -24,6 +24,7 @@ const footerLinks = {
     { href: "/tools/pdf-tools", label: "PDF Toolkit" },
     { href: "/tools/pdf-maker", label: "PDF Maker" },
     { href: "/tools/passport-photo-maker", label: "Passport Photo Maker" },
+    { href: "/tools/image-converter", label: "Image Converter" },
     { href: "/tools/photo-signature-resizer", label: "Photo & Signature Resizer" },
     { href: "/tools/compress-to-exact-size", label: "Compress to Exact Size" },
     { href: "/tools/ocr-to-excel-word", label: "OCR to Excel & Word" },

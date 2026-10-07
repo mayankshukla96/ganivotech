@@ -6,6 +6,7 @@ export const TOOLS = [
   { href: "/tools/short-link-maker", name: "Short Link Maker", blurb: "Shorten a link with your own custom name, get a QR code and see how many people clicked." },
   { href: "/tools/pdf-tools", name: "PDF Toolkit", blurb: "Merge, split, unlock, protect, watermark and number PDFs, or turn them into pictures. Nothing is uploaded." },
   { href: "/tools/passport-photo-maker", name: "Passport Photo Maker", blurb: "Crop passport and ID photos, whiten the background and print many copies on one sheet." },
+  { href: "/tools/image-converter", name: "Image Format Converter", blurb: "Convert pictures between JPG, PNG and WebP in bulk, with quality and size control." },
   { href: "/tools/photo-signature-resizer", name: "Photo & Signature Resizer", blurb: "Resize a photo or signature to the exact KB and size an online form asks for." },
   { href: "/tools/compress-to-exact-size", name: "Compress to Exact Size", blurb: "Make a picture or PDF smaller than, or exactly, 50 KB, 100 KB, 200 KB or any size." },
   { href: "/tools/ocr-to-excel-word", name: "OCR to Excel & Word", blurb: "Turn a photo, scan or PDF into an Excel sheet or Word file. English and Hindi." },
@@ -254,5 +255,33 @@ export const PASSPORT = {
     ["How do I print passport photos at home?", "Download the sheet as JPG or PDF, print it at actual size on 4x6 photo paper or A4, and cut along the thin lines."],
     ["Can I set the file size, for example under 50 KB?", "Yes. Type the largest size in KB before you download. The photo is compressed until it fits."],
     ["Will this photo be accepted for my application?", "We cannot promise that. It makes the size and background you choose, but each office decides. Follow the official guidelines for your application."],
+  ],
+};
+
+export const CONVERT = {
+  path: "/tools/image-converter",
+  title: "Image Converter – JPG, PNG, WebP Free, No Upload | GanivoTech",
+  description: "Convert pictures between JPG, PNG and WebP, in bulk, with adjustable quality and size. Free, no signup, and your images stay in your browser.",
+  h1: "Image Format Converter: JPG, PNG and WebP",
+  intro: "Change the format of one picture or a hundred at once. Choose JPG, PNG or WebP, set the quality and the largest width, and download each file or a single ZIP.",
+  steps: [
+    "Choose your pictures. You can add many at once.",
+    "Pick the format you want: JPG, PNG or WebP.",
+    "For JPG and WebP, set the quality. For smaller files, also choose a smaller width.",
+    "Click Convert, then save each picture or download them all as a ZIP.",
+  ],
+  tips: [
+    "Use JPG for photos, PNG for logos, screenshots and anything see-through, and WebP when a website accepts it and you want small files.",
+    "Converting to JPG turns see-through areas white, because JPG cannot be see-through.",
+    "Converting a picture again and again loses quality each time. Keep your original.",
+    "If a form wants a picture under a size limit, use Compress to Exact Size after converting.",
+  ],
+  faqs: [
+    ["Are my pictures uploaded anywhere?", "No. The pictures are converted inside your browser and never leave your device."],
+    ["Which formats can I convert from?", "JPG, PNG, WebP, GIF, BMP and AVIF, as long as your browser can open them. iPhone HEIC photos are not supported by most browsers. Change the camera setting to Most Compatible, or share the photo as JPG."],
+    ["Does converting reduce quality?", "PNG keeps every detail. JPG and WebP are compressed, so a lower quality number makes a smaller file with less detail. 90 is a good balance."],
+    ["Can I convert many pictures at once?", "Yes, up to 100 at a time. Download them one by one or all together in a ZIP."],
+    ["Why did my transparent picture get a white background?", "JPG cannot store see-through areas, so they are filled with white. Choose PNG or WebP to keep transparency."],
+    ["Is it free?", "Yes. No signup, no watermark and no limit on how often you use it."],
   ],
 };

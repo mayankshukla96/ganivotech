@@ -18,7 +18,7 @@ export default function Page() {
 
         <h2 className={h2}>Our free tools</h2>
         <p className={p}>
-          The QR Code Maker, Bulk QR from Excel, VCF Maker, PDF Maker, PDF Toolkit, Passport Photo Maker, Photo &amp; Signature Resizer, Compress to Exact Size and OCR to Excel &amp; Word work inside your browser. The details you type, the photos, documents, spreadsheets and PDFs you choose, and the files you create are not uploaded to or stored on our servers. In the PDF Toolkit this includes any password you type to open or lock a PDF: it is used only inside your browser and is not sent or saved.
+          The QR Code Maker, Bulk QR from Excel, VCF Maker, PDF Maker, PDF Toolkit, Passport Photo Maker, Image Format Converter, Photo &amp; Signature Resizer, Compress to Exact Size and OCR to Excel &amp; Word work inside your browser. The details you type, the photos, documents, spreadsheets and PDFs you choose, and the files you create are not uploaded to or stored on our servers. In the PDF Toolkit this includes any password you type to open or lock a PDF: it is used only inside your browser and is not sent or saved.
         </p>
         <p className={p}>
           There are two small exceptions. In the QR Code Maker&apos;s Location option, the text you type in the place search box is sent to the Photon geocoding service (photon.komoot.io, based on OpenStreetMap data) to fetch suggestions. And the first time you use OCR to Excel &amp; Word, your browser downloads the open-source text-recognition engine and language data from a public content delivery network (cdn.jsdelivr.net), which can see that your browser requested those files. Your pictures and documents are never sent there.

@@ -19,6 +19,7 @@ export default function sitemap() {
     ["/tools/pdf-tools", "2026-10-05", 0.9],
     ...Object.values(PDF_OPS).map((t) => [t.path, "2026-10-05", 0.8]),
     ["/tools/passport-photo-maker", "2026-10-06", 0.9],
+    ["/tools/image-converter", "2026-10-07", 0.9],
     ["/tools/photo-signature-resizer", "2026-10-04", 0.9],
     ["/tools/photo-signature-resizer/signature", "2026-10-04", 0.8],
     ["/tools/compress-to-exact-size", "2026-10-04", 0.9],
