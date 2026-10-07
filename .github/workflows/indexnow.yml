@@ -1,0 +1,19 @@
+name: IndexNow
+# After each push to master, wait for Vercel to deploy, then tell Bing which pages exist (free, no account needed).
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Wait for the deploy
+        run: sleep 240
+      - run: node scripts/indexnow.mjs
+        env:
+          INDEXNOW_KEY: 13b0726ca61b85df9b74e837a5770efc # not secret: the same key is published at /13b0726ca61b85df9b74e837a5770efc.txt, that is how IndexNow works

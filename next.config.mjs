@@ -30,6 +30,8 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // the *.vercel.app copy of the site must not compete with ganivotech.com in search results
+      { source: "/:path*", has: [{ type: "host", value: "ganivotech.vercel.app" }], destination: "https://ganivotech.com/:path*", permanent: true },
       // the URL generator is the main page; avoid a duplicate /url page
       { source: "/tools/qr-generator/url", destination: "/tools/qr-generator", permanent: true },
       // retired tool
