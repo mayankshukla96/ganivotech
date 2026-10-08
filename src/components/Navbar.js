@@ -36,6 +36,7 @@ const MENUS = {
 function DropMenu({ menu }) {
   const [open, setOpen] = useState(false);
   const m = MENUS[menu];
+  const wide = m.items.length > 7;
   return (
     <div
       className="relative"
@@ -49,14 +50,17 @@ function DropMenu({ menu }) {
         <svg className={`w-3.5 h-3.5 transition-transform ${open ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
       </button>
       {open && (
-        <div className="absolute left-0 top-full pt-3 w-80">
-          <div className="rounded-xl border border-border bg-background shadow-lg p-2">
-            {m.items.map((t) => (
-              <Link key={t.href} href={t.href} onClick={() => setOpen(false)} className="block rounded-lg px-3 py-2 hover:bg-primary/10">
-                <span className="block text-sm font-semibold">{t.name}</span>
-                <span className="block text-xs text-muted">{t.blurb}</span>
-              </Link>
-            ))}
+        // a long list (the free tools) is shown in two columns so it fits on the screen; it scrolls on short screens
+        <div className={`absolute top-full pt-3 ${wide ? "left-1/2 -translate-x-1/2 w-[min(44rem,calc(100vw-2rem))]" : "left-0 w-80"}`}>
+          <div className="rounded-xl border border-border bg-background shadow-lg p-2 max-h-[calc(100vh-6rem)] overflow-y-auto">
+            <div className={wide ? "grid grid-cols-2 gap-x-1" : ""}>
+              {m.items.map((t) => (
+                <Link key={t.href} href={t.href} onClick={() => setOpen(false)} className="block rounded-lg px-3 py-2 hover:bg-primary/10">
+                  <span className="block text-sm font-semibold">{t.name}</span>
+                  <span className={`block text-xs text-muted ${wide ? "line-clamp-1" : ""}`}>{t.blurb}</span>
+                </Link>
+              ))}
+            </div>
             <Link href={m.all.href} onClick={() => setOpen(false)} className="block rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-primary/10">{m.all.label}</Link>
           </div>
         </div>

@@ -7,6 +7,7 @@ export const TOOLS = [
   { href: "/tools/pdf-tools", name: "PDF Toolkit", blurb: "Merge, split, unlock, protect, watermark and number PDFs, or turn them into pictures. Nothing is uploaded." },
   { href: "/tools/passport-photo-maker", name: "Passport Photo Maker", blurb: "Crop passport and ID photos, whiten the background and print many copies on one sheet." },
   { href: "/tools/image-converter", name: "Image Format Converter", blurb: "Convert pictures between JPG, PNG and WebP in bulk, with quality and size control." },
+  { href: "/tools/visiting-card-maker", name: "Visiting Card Maker", blurb: "Design a print-ready visiting card with your logo and a QR code that saves your contact or opens a smart card." },
   { href: "/tools/photo-signature-resizer", name: "Photo & Signature Resizer", blurb: "Resize a photo or signature to the exact KB and size an online form asks for." },
   { href: "/tools/compress-to-exact-size", name: "Compress to Exact Size", blurb: "Make a picture or PDF smaller than, or exactly, 50 KB, 100 KB, 200 KB or any size." },
   { href: "/tools/ocr-to-excel-word", name: "OCR to Excel & Word", blurb: "Turn a photo, scan or PDF into an Excel sheet or Word file. English and Hindi." },
@@ -283,5 +284,35 @@ export const CONVERT = {
     ["Can I convert many pictures at once?", "Yes, up to 100 at a time. Download them one by one or all together in a ZIP."],
     ["Why did my transparent picture get a white background?", "JPG cannot store see-through areas, so they are filled with white. Choose PNG or WebP to keep transparency."],
     ["Is it free?", "Yes. No signup, no watermark and no limit on how often you use it."],
+  ],
+};
+
+export const VCARD_MAKER = {
+  path: "/tools/visiting-card-maker",
+  title: "Visiting Card Maker with QR Code – Free, Print Ready | GanivoTech",
+  description: "Design a visiting card with your logo and a QR code that saves your contact, or a smart card that opens your digital card. Free, 300 DPI, A4 print sheet.",
+  h1: "Visiting Card Maker with Logo and QR Code",
+  intro: "Type your details, add your logo, pick a style, and download a print-ready card. The QR code saves you as a contact in one scan, or opens a smart digital card with Call, WhatsApp and Save buttons.",
+  note: "Free \u2022 No signup \u2022 Print-ready 300 DPI",
+  steps: [
+    "Fill in your name, title, company, phone, email, website and address. Add your logo if you have one.",
+    "Choose a style and colour. The front and back update as you type.",
+    "Decide what the QR code does: save your contact offline, or open a smart card page that we host and that counts scans.",
+    "Download the front and back as PNG or PDF, or an A4 sheet with 10 cards for your local printer.",
+  ],
+  tips: [
+    "Write the phone number with the country code, for example 919876543210, so the saved contact works everywhere.",
+    "Use a square logo with a plain background. It is placed on a white tile on dark styles.",
+    "Ask your printer for 89 x 51 mm cards on 300 GSM paper. The files are exactly that size at 300 DPI.",
+    "The A4 sheet has the back mirrored, so print both sides and flip on the long edge.",
+    "Pick the smart card if your details may change: the QR code stays the same while the page is yours to switch off and remake.",
+  ],
+  faqs: [
+    ["Are my details uploaded?", "Not for a normal card. The card and its QR code are drawn in your browser. If you choose the smart card, the details on it are saved on our server so the page can open when someone scans it."],
+    ["What does the QR code contain?", "By default a vCard: your name, title, company, phone, email, website and address. Any phone camera offers to save it as a contact, with no internet needed. With the smart card, the QR code holds the address of your digital card instead."],
+    ["What is a smart visiting card?", "A card whose QR code opens a small web page with your logo, name and one-tap buttons: Save contact, Call, WhatsApp, Email, Website and Directions. You can see how many people scanned it in the Short Link Maker under My links."],
+    ["Can I change the smart card later?", "Not yet. You can switch it off or delete it with the manage key and make a new one. Keep the same QR code only if the address is unchanged."],
+    ["What size is the card?", "89 x 51 mm (3.5 x 2 inch), the standard visiting card size in India, at 300 DPI. Printers may ask for a 3 mm bleed; tell us if yours does."],
+    ["Is it free?", "Yes. No signup, no watermark, and you can make as many cards as you like."],
   ],
 };
