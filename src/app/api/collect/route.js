@@ -49,9 +49,9 @@ export async function POST(req) {
     const { device, browser, os } = parseUA(ua);
 
     await q(
-      `INSERT INTO pageviews (path, source, medium, ref_host, country, region, city, device, browser, os, vid)
-       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)`,
-      [path, source, medium, refHost, req.headers.get("x-vercel-ip-country"), req.headers.get("x-vercel-ip-country-region"), city, device, browser, os, vid]
+      `INSERT INTO pageviews (path, source, medium, ref_host, country, region, city, device, browser, os, vid, is_new)
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)`,
+      [path, source, medium, refHost, req.headers.get("x-vercel-ip-country"), req.headers.get("x-vercel-ip-country-region"), city, device, browser, os, vid, b.nv === true && !b.nav]
     );
   } catch {
     // analytics must never break the site

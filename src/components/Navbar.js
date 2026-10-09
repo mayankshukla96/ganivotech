@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { TOOLS } from "@/lib/tools-content";
+import { TOOLS, TOOL_GROUPS } from "@/lib/tools-content";
 import { PRODUCT_LIST } from "@/lib/products";
 
 const navLinks = [
@@ -23,7 +23,8 @@ const linkCls = "text-sm font-medium text-muted hover:text-primary transition-co
 const MENUS = {
   tools: {
     label: "Free Tools",
-    items: TOOLS.map((t) => ({ href: t.href, name: t.name, blurb: t.blurb })),
+    items: TOOLS.map((t) => ({ href: t.href, name: t.name, blurb: t.blurb, group: t.group })),
+    groups: TOOL_GROUPS,
     all: { href: "/tools", label: "See all free tools" },
   },
   premium: {
@@ -36,7 +37,7 @@ const MENUS = {
 function DropMenu({ menu }) {
   const [open, setOpen] = useState(false);
   const m = MENUS[menu];
-  const wide = m.items.length > 7;
+  const wide = !!m.groups;
   return (
     <div
       className="relative"
@@ -51,16 +52,27 @@ function DropMenu({ menu }) {
       </button>
       {open && (
         // a long list (the free tools) is shown in two columns so it fits on the screen; it scrolls on short screens
-        <div className={`absolute top-full pt-3 ${wide ? "left-1/2 -translate-x-1/2 w-[min(44rem,calc(100vw-2rem))]" : "left-0 w-80"}`}>
+        <div className={`absolute top-full pt-3 ${wide ? "left-1/2 -translate-x-1/2 w-[min(46rem,calc(100vw-2rem))]" : "left-0 w-80"}`}>
           <div className="rounded-xl border border-border bg-background shadow-lg p-2 max-h-[calc(100vh-6rem)] overflow-y-auto">
-            <div className={wide ? "grid grid-cols-2 gap-x-1" : ""}>
-              {m.items.map((t) => (
+            {wide ? (
+              <div className="grid grid-cols-3 gap-x-2 px-1 pt-1">
+                {m.groups.map(([g, heading]) => (
+                  <div key={g}>
+                    <p className="px-3 pb-1 text-[11px] font-semibold uppercase tracking-wider text-muted">{heading}</p>
+                    {m.items.filter((t) => t.group === g).map((t) => (
+                      <Link key={t.href} href={t.href} onClick={() => setOpen(false)} className="block rounded-lg px-3 py-1.5 text-sm font-medium hover:bg-primary/10 hover:text-primary">{t.name}</Link>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              m.items.map((t) => (
                 <Link key={t.href} href={t.href} onClick={() => setOpen(false)} className="block rounded-lg px-3 py-2 hover:bg-primary/10">
                   <span className="block text-sm font-semibold">{t.name}</span>
-                  <span className={`block text-xs text-muted ${wide ? "line-clamp-1" : ""}`}>{t.blurb}</span>
+                  <span className="block text-xs text-muted">{t.blurb}</span>
                 </Link>
-              ))}
-            </div>
+              ))
+            )}
             <Link href={m.all.href} onClick={() => setOpen(false)} className="block rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-primary/10">{m.all.label}</Link>
           </div>
         </div>
@@ -69,8 +81,37 @@ function DropMenu({ menu }) {
   );
 }
 
+// A tap-to-expand section of the phone menu, with the tools under their headings.
+function MobileSection({ m, open, onToggle, close }) {
+  const item = (t) => <Link key={t.href} href={t.href} onClick={close} className="block text-sm text-muted hover:text-primary transition-colors py-1.5">{t.name}</Link>;
+  return (
+    <div className="border-b border-border/60 pb-1">
+      <button type="button" onClick={onToggle} aria-expanded={open} className="flex w-full items-center justify-between text-sm font-semibold text-foreground py-2">
+        {m.label}
+        <svg className={`w-4 h-4 text-muted transition-transform ${open ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+      </button>
+      {open && (
+        <div className="pb-2">
+          {m.groups ? (
+            m.groups.map(([g, heading]) => (
+              <div key={g} className="mt-2">
+                <p className="text-[11px] font-semibold uppercase tracking-wider text-muted mb-0.5">{heading}</p>
+                <div className="ml-2 border-l border-border pl-3">{m.items.filter((t) => t.group === g).map(item)}</div>
+              </div>
+            ))
+          ) : (
+            <div className="ml-2 border-l border-border pl-3">{m.items.map(item)}</div>
+          )}
+          <Link href={m.all.href} onClick={close} className="block text-sm font-semibold text-primary py-2 mt-1">{m.all.label} &rarr;</Link>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [expanded, setExpanded] = useState(""); // which menu section is open on a phone
   const [admin, setAdmin] = useState(false);
 
   // the Analytics link is shown only to the signed-in owner
@@ -158,19 +199,10 @@ export default function Navbar() {
             exit={{ opacity: 0, height: 0 }}
             className="xl:hidden bg-background border-b border-border overflow-hidden"
           >
-            <div className="px-4 py-4 space-y-3">
+            <div className="px-4 py-4 space-y-1 max-h-[calc(100vh-4.5rem)] overflow-y-auto">
               {links.map((link) =>
                 link.menu ? (
-                  <div key={link.menu} className="py-1">
-                    <Link href={MENUS[link.menu].all.href} onClick={() => setMobileOpen(false)} className="block text-sm font-semibold text-foreground py-2">{MENUS[link.menu].label}</Link>
-                    <div className="ml-3 border-l border-border pl-3 space-y-1">
-                      {MENUS[link.menu].items.map((t) => (
-                        <Link key={t.href} href={t.href} onClick={() => setMobileOpen(false)} className="block text-sm text-muted hover:text-primary transition-colors py-1.5">
-                          {t.name}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
+                  <MobileSection key={link.menu} m={MENUS[link.menu]} open={expanded === link.menu} onToggle={() => setExpanded(expanded === link.menu ? "" : link.menu)} close={() => setMobileOpen(false)} />
                 ) : (
                   <Link key={link.href} href={link.href} onClick={() => setMobileOpen(false)} className="block text-sm font-medium text-muted hover:text-primary transition-colors py-2">
                     {link.label}

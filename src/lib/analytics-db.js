@@ -31,6 +31,7 @@ export async function ensureSchema() {
           vid TEXT NOT NULL
         );
         CREATE INDEX IF NOT EXISTS pageviews_ts_idx ON pageviews (ts);
+        ALTER TABLE pageviews ADD COLUMN IF NOT EXISTS is_new BOOLEAN NOT NULL DEFAULT false;
         CREATE TABLE IF NOT EXISTS suggestions (
           id BIGSERIAL PRIMARY KEY,
           ts TIMESTAMPTZ NOT NULL DEFAULT now(),

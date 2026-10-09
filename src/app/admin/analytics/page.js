@@ -24,7 +24,7 @@ async function load(range) {
   const p = [range.from, range.to];
   const fmt = { hour: "YYYY-MM-DD HH24:00", day: "YYYY-MM-DD", month: "YYYY-MM" }[range.gran];
   const [totals, bounce, series, pages, entries, exits, flows, sources, mediums, countries, cities, devices, browsers, systems, recent, ideas, leads, shorts] = await Promise.all([
-    q(`SELECT count(*)::int views, count(DISTINCT vid)::int visitors FROM pageviews WHERE ${w}`, p),
+    q(`SELECT count(*)::int views, count(DISTINCT vid)::int visitors, count(*) FILTER (WHERE is_new)::int new_visitors FROM pageviews WHERE ${w}`, p),
     q(`SELECT count(*)::int n FROM (SELECT vid FROM pageviews WHERE ${w} GROUP BY vid HAVING count(*) = 1) t`, p),
     q(`SELECT to_char(date_trunc('${range.gran}', ts AT TIME ZONE 'Asia/Kolkata'), '${fmt}') k, count(*)::int views, count(DISTINCT vid)::int visitors FROM pageviews WHERE ${w} GROUP BY 1`, p),
     q(`SELECT path, count(*)::int views, count(DISTINCT vid)::int visitors FROM pageviews WHERE ${w} GROUP BY path ORDER BY views DESC LIMIT 15`, p),
@@ -217,10 +217,11 @@ export default async function Page({ searchParams }) {
         </form>
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-6 gap-3 mb-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-7 gap-3 mb-6">
         {[
           ["Page views", n(views)],
           ["Visitors", n(visitors)],
+          ["New visitors", `${n(d.totals.new_visitors)} (${pct(d.totals.new_visitors, visitors)})`],
           ["Pages / visit", visitors ? (views / visitors).toFixed(1) : "0"],
           ["Bounce rate", pct(d.bounce, visitors)],
           ["Top source", topSource ? topSource.source : "-"],

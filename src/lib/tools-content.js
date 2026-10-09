@@ -1,18 +1,21 @@
 // Catalog + page copy for the browser-based file tools. Used by the hub, menu, footer, sitemap and tool pages.
 
+// Menu headings for the tools, in display order.
+export const TOOL_GROUPS = [["qr", "QR codes & links"], ["pdf", "PDF & documents"], ["image", "Photos & images"]];
+
 export const TOOLS = [
-  { href: "/tools/qr-generator", name: "QR Code Maker", blurb: "Free QR codes for links, WiFi, WhatsApp, UPI and more, with logo and styles." },
-  { href: "/tools/bulk-qr-code-generator", name: "Bulk QR from Excel", blurb: "Make hundreds of QR codes from an Excel or CSV list, as a ZIP or printable A4 sheets." },
-  { href: "/tools/short-link-maker", name: "Short Link Maker", blurb: "Shorten a link with your own custom name, get a QR code and see how many people clicked." },
-  { href: "/tools/pdf-tools", name: "PDF Toolkit", blurb: "Merge, split, unlock, protect, watermark and number PDFs, or turn them into pictures. Nothing is uploaded." },
-  { href: "/tools/passport-photo-maker", name: "Passport Photo Maker", blurb: "Crop passport and ID photos, whiten the background and print many copies on one sheet." },
-  { href: "/tools/image-converter", name: "Image Format Converter", blurb: "Convert pictures between JPG, PNG and WebP in bulk, with quality and size control." },
-  { href: "/tools/visiting-card-maker", name: "Visiting Card Maker", blurb: "Design a print-ready visiting card with your logo and a QR code that saves your contact or opens a smart card." },
-  { href: "/tools/photo-signature-resizer", name: "Photo & Signature Resizer", blurb: "Resize a photo or signature to the exact KB and size an online form asks for." },
-  { href: "/tools/compress-to-exact-size", name: "Compress to Exact Size", blurb: "Make a picture or PDF smaller than, or exactly, 50 KB, 100 KB, 200 KB or any size." },
-  { href: "/tools/ocr-to-excel-word", name: "OCR to Excel & Word", blurb: "Turn a photo, scan or PDF into an Excel sheet or Word file. English and Hindi." },
-  { href: "/tools/vcf-maker", name: "VCF Maker", blurb: "Turn a spreadsheet of contacts into one file you can import on any phone." },
-  { href: "/tools/pdf-maker", name: "PDF Maker", blurb: "Combine pictures and text files into one PDF." },
+  { href: "/tools/qr-generator", group: "qr", name: "QR Code Maker", blurb: "Free QR codes for links, WiFi, WhatsApp, UPI and more, with logo and styles." },
+  { href: "/tools/bulk-qr-code-generator", group: "qr", name: "Bulk QR from Excel", blurb: "Make hundreds of QR codes from an Excel or CSV list, as a ZIP or printable A4 sheets." },
+  { href: "/tools/short-link-maker", group: "qr", name: "Short Link Maker", blurb: "Shorten a link with your own custom name, get a QR code and see how many people clicked." },
+  { href: "/tools/pdf-tools", group: "pdf", name: "PDF Toolkit", blurb: "Merge, split, unlock, protect, watermark and number PDFs, or turn them into pictures. Nothing is uploaded." },
+  { href: "/tools/passport-photo-maker", group: "image", name: "Passport Photo Maker", blurb: "Crop passport and ID photos, whiten the background and print many copies on one sheet." },
+  { href: "/tools/image-converter", group: "image", name: "Image Format Converter", blurb: "Convert pictures between JPG, PNG and WebP in bulk, with quality and size control." },
+  { href: "/tools/visiting-card-maker", group: "qr", name: "Visiting Card Maker", blurb: "Design a print-ready visiting card with your logo and a QR code that saves your contact or opens a smart card." },
+  { href: "/tools/photo-signature-resizer", group: "image", name: "Photo & Signature Resizer", blurb: "Resize a photo or signature to the exact KB and size an online form asks for." },
+  { href: "/tools/compress-to-exact-size", group: "image", name: "Compress to Exact Size", blurb: "Make a picture or PDF smaller than, or exactly, 50 KB, 100 KB, 200 KB or any size." },
+  { href: "/tools/ocr-to-excel-word", group: "pdf", name: "OCR to Excel & Word", blurb: "Turn a photo, scan or PDF into an Excel sheet or Word file. English and Hindi." },
+  { href: "/tools/vcf-maker", group: "pdf", name: "VCF Maker", blurb: "Turn a spreadsheet of contacts into one file you can import on any phone." },
+  { href: "/tools/pdf-maker", group: "pdf", name: "PDF Maker", blurb: "Combine pictures and text files into one PDF." },
 ];
 
 export const RESIZER = {
