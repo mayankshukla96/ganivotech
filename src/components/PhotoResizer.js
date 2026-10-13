@@ -70,7 +70,7 @@ export default function PhotoResizer({ kind = "photo", initialKB = 50, initialW 
       <div className="space-y-5">
         <div className="rounded-2xl border border-border bg-surface p-5 sm:p-6">
           <h2 className="text-lg font-semibold mb-4">1. Choose your {kind}</h2>
-          <FileDrop accept="image/*" onFiles={onFile} label={file ? file.name : `Click or drop your ${kind} here`} hint="JPG, PNG, WebP. Stays on your device." />
+          <FileDrop accept="image/*,.heic,.heif" onFiles={onFile} label={file ? file.name : `Click or drop your ${kind} here`} hint="JPG, PNG, WebP. Stays on your device." />
           {bmp && <p className="mt-3 text-xs text-muted">Original: {bmp.width} x {bmp.height} px, {fmtBytes(file.size)}</p>}
         </div>
 

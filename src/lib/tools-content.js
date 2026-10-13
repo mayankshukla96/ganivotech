@@ -282,7 +282,7 @@ export const CONVERT = {
   ],
   faqs: [
     ["Are my pictures uploaded anywhere?", "No. The pictures are converted inside your browser and never leave your device."],
-    ["Which formats can I convert from?", "JPG, PNG, WebP, GIF, BMP and AVIF, as long as your browser can open them. iPhone HEIC photos are not supported by most browsers. Change the camera setting to Most Compatible, or share the photo as JPG."],
+    ["Which formats can I convert from?", "JPG, PNG, WebP, GIF, BMP, AVIF and iPhone HEIC photos. HEIC is decoded in your browser, so the first HEIC file takes a moment while the decoder loads."],
     ["Does converting reduce quality?", "PNG keeps every detail. JPG and WebP are compressed, so a lower quality number makes a smaller file with less detail. 90 is a good balance."],
     ["Can I convert many pictures at once?", "Yes, up to 100 at a time. Download them one by one or all together in a ZIP."],
     ["Why did my transparent picture get a white background?", "JPG cannot store see-through areas, so they are filled with white. Choose PNG or WebP to keep transparency."],

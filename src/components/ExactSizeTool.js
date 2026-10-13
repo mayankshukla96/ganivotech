@@ -111,7 +111,7 @@ export default function ExactSizeTool({ initialTarget = 200 * KB }) {
       <div className="space-y-5">
         <div className="rounded-2xl border border-border bg-surface p-5 sm:p-6">
           <h2 className="text-lg font-semibold mb-4">1. Choose your file</h2>
-          <FileDrop accept="image/*,.pdf,application/pdf" onFiles={([f]) => { setFile(f); setRes(null); setErr(""); }} label={file ? file.name : "Click or drop a JPG, PNG, WebP or PDF"} hint="Stays on your device." />
+          <FileDrop accept="image/*,.heic,.heif,.pdf,application/pdf" onFiles={([f]) => { setFile(f); setRes(null); setErr(""); }} label={file ? file.name : "Click or drop a JPG, PNG, WebP or PDF"} hint="Stays on your device." />
           {file && <p className="mt-3 text-xs text-muted">Current size: {fmtBytes(file.size)}</p>}
         </div>
         <div className="rounded-2xl border border-border bg-surface p-5 sm:p-6">

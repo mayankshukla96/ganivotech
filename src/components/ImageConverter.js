@@ -44,8 +44,8 @@ export default function ImageConverter() {
   useEffect(() => { setResults([]); }, [fmt, quality, maxW, files]);
 
   function add(list) {
-    const ok = list.filter((f) => /^image\//.test(f.type) || /\.(jpe?g|png|webp|gif|bmp|avif|svg)$/i.test(f.name));
-    setErr(ok.length < list.length ? "Some files were skipped because they are not pictures this browser can open (HEIC photos from iPhones are not supported here)." : "");
+    const ok = list.filter((f) => /^image\//.test(f.type) || /\.(jpe?g|png|webp|gif|bmp|avif|svg|heic|heif)$/i.test(f.name));
+    setErr(ok.length < list.length ? "Some files were skipped because they are not pictures this browser can open (that file type is not supported)." : "");
     setFiles((cur) => [...cur, ...ok].slice(0, MAX_FILES));
   }
 
@@ -84,7 +84,7 @@ export default function ImageConverter() {
       <div className="space-y-5">
         <div className={card}>
           <h2 className="text-lg font-semibold mb-4">1. Choose your pictures</h2>
-          <FileDrop multiple accept="image/*" onFiles={add} label={files.length ? `${files.length} picture${files.length === 1 ? "" : "s"} selected. Add more` : "Click or drop JPG, PNG, WebP, GIF, BMP or AVIF pictures"} hint={`Up to ${MAX_FILES} at once. Stays on your device.`} />
+          <FileDrop multiple accept="image/*,.heic,.heif" onFiles={add} label={files.length ? `${files.length} picture${files.length === 1 ? "" : "s"} selected. Add more` : "Click or drop JPG, PNG, WebP, GIF, BMP, AVIF or iPhone HEIC pictures"} hint={`Up to ${MAX_FILES} at once. Stays on your device.`} />
           {files.length > 0 && (
             <>
               <ul className="mt-3 space-y-1 max-h-40 overflow-auto text-xs text-muted">

@@ -2,7 +2,30 @@
 
 export const KB = 1024;
 
-export const loadBitmap = (file) => createImageBitmap(file, { imageOrientation: "from-image" });
+export const isHeic = (f) => /^image\/hei[cf]/i.test(f.type) || /\.hei[cf]$/i.test(f.name || "");
+
+// libheif (WebAssembly, no eval, so it works under the site's security policy) is loaded only when a HEIC file is opened
+async function decodeHeic(file) {
+  const mod = await import("libheif-js/wasm-bundle");
+  const libheif = mod.default || mod;
+  const [image] = new libheif.HeifDecoder().decode(new Uint8Array(await file.arrayBuffer()));
+  if (!image) throw new Error("heic");
+  const w = image.get_width(), h = image.get_height();
+  const rgba = await new Promise((res, rej) => {
+    const target = { data: new Uint8ClampedArray(w * h * 4), width: w, height: h };
+    image.display(target, (d) => (d ? res(d.data) : rej(new Error("heic"))));
+  });
+  const c = document.createElement("canvas");
+  c.width = w; c.height = h;
+  c.getContext("2d").putImageData(new ImageData(rgba, w, h), 0, 0);
+  return createImageBitmap(c);
+}
+
+/** Opens a picture. iPhone HEIC/HEIF photos are decoded in the browser first. */
+export async function loadBitmap(file) {
+  if (isHeic(file)) return decodeHeic(file);
+  return createImageBitmap(file, { imageOrientation: "from-image" });
+}
 
 const toBlob = (canvas, type, q) => new Promise((res, rej) => canvas.toBlob((b) => (b ? res(b) : rej(new Error("encode failed"))), type, q));
 export const toJpeg = (canvas, q) => toBlob(canvas, "image/jpeg", q);

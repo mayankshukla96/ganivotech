@@ -130,7 +130,7 @@ export default function PassportPhotoMaker() {
       <div className="space-y-5">
         <div className={card}>
           <h2 className="text-lg font-semibold mb-4">1. Choose your photo</h2>
-          <FileDrop accept="image/*" onFiles={onFile} label={file ? file.name : "Click or drop a photo"} hint="Stays on your device. A plain wall behind you works best." />
+          <FileDrop accept="image/*,.heic,.heif" onFiles={onFile} label={file ? file.name : "Click or drop a photo"} hint="Stays on your device. A plain wall behind you works best." />
         </div>
         <div className={card}>
           <h2 className="text-lg font-semibold mb-4">2. Size and look</h2>
