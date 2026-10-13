@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import ToolFinder from "@/components/ToolFinder";
 
 const services = [
   {
@@ -69,54 +70,33 @@ export default function Home() {
           <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-secondary/5 blur-3xl" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32 lg:py-40">
-          <motion.div
-            className="max-w-3xl mx-auto text-center"
-            initial="hidden"
-            animate="visible"
-          >
-            <motion.p
-              variants={fadeUp}
-              custom={0}
-              className="text-sm font-semibold text-primary uppercase tracking-widest mb-4"
-            >
-              Welcome to Ganivotech
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 pb-10">
+          <motion.div className="max-w-3xl mx-auto text-center" initial="hidden" animate="visible">
+            <motion.p variants={fadeUp} custom={0} className="text-sm font-semibold text-primary uppercase tracking-widest mb-4">
+              Free tools &bull; No signup &bull; Nothing uploaded
             </motion.p>
-            <motion.h1
-              variants={fadeUp}
-              custom={1}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6"
-            >
-              Building the Future with{" "}
-              <span className="gradient-text">Smart IT Solutions</span>
+            <motion.h1 variants={fadeUp} custom={1} className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+              Free tools for <span className="gradient-text">QR codes, PDFs and photos</span>
             </motion.h1>
-            <motion.p
-              variants={fadeUp}
-              custom={2}
-              className="text-lg text-muted leading-relaxed mb-10 max-w-2xl mx-auto"
-            >
-              We help businesses grow with innovative technology solutions, expert
-              consulting, and practical IT tips that make a real difference.
+            <motion.p variants={fadeUp} custom={2} className="text-lg text-muted leading-relaxed mb-8 max-w-2xl mx-auto">
+              Make QR codes, short links and visiting cards, fix PDFs, and resize photos for exam forms. Everything runs in your browser, so your files stay on your device.
             </motion.p>
-            <motion.div
-              variants={fadeUp}
-              custom={3}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4"
-            >
-              <Link
-                href="/contact"
-                className="px-8 py-3.5 rounded-xl gradient-bg-orange text-white font-semibold hover:opacity-90 transition-opacity"
-              >
-                Start Your Project
+            <motion.div variants={fadeUp} custom={3} className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link href="/tools" className="px-8 py-3.5 rounded-xl gradient-bg-orange text-white font-semibold hover:opacity-90 transition-opacity">
+                Browse all free tools
               </Link>
-              <Link
-                href="/services"
-                className="px-8 py-3.5 rounded-xl border border-border font-semibold hover:border-primary hover:text-primary transition-colors"
-              >
-                Our Services
+              <Link href="/contact" className="px-8 py-3.5 rounded-xl border border-border font-semibold hover:border-primary hover:text-primary transition-colors">
+                Need software or an app built?
               </Link>
             </motion.div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Tools */}
+      <section className="pb-16 sm:pb-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ToolFinder />
         </div>
       </section>
 
@@ -263,29 +243,6 @@ export default function Home() {
                 </div>
               </div>
             </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Free tools */}
-      <section className="py-16 sm:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl border border-border bg-surface p-8 sm:p-12 grid lg:grid-cols-[1.3fr_1fr] gap-8 items-center">
-            <div>
-              <span className="inline-block px-3 py-1 mb-4 rounded-full bg-accent/10 text-accent text-xs font-semibold">New: Free Tool</span>
-              <h2 className="text-3xl font-bold mb-3">Short Link Maker</h2>
-              <p className="font-semibold mb-2">Short links with your own name.</p>
-              <p className="text-muted leading-relaxed mb-6">Turn a long web address into something like ganivotech.com/go/diwali-offer. Pick a name style, get a QR code, make WhatsApp chat links and see how many people clicked. Free, no signup.</p>
-              <div className="flex flex-wrap gap-3">
-                <Link href="/tools/short-link-maker" className="px-6 py-3 rounded-xl gradient-bg-orange text-white font-semibold hover:opacity-90 transition-opacity">Make a short link</Link>
-                <Link href="/tools" className="px-6 py-3 rounded-xl border border-border font-semibold hover:border-primary hover:text-primary transition-colors">All free tools</Link>
-              </div>
-            </div>
-            <div className="rounded-2xl border border-border bg-background p-5 text-center" aria-hidden="true">
-              <p className="text-xs text-muted mb-1 break-all">https://shop.example.in/offers/festival/sweets-box?utm_source=whatsapp&amp;ref=12345</p>
-              <p className="text-2xl text-muted mb-1">&darr;</p>
-              <p className="text-sm sm:text-lg font-bold text-primary break-all">ganivotech.com/go/diwali-offer</p>
-            </div>
           </div>
         </div>
       </section>

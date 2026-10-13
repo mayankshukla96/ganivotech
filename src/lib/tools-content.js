@@ -1,7 +1,7 @@
 // Catalog + page copy for the browser-based file tools. Used by the hub, menu, footer, sitemap and tool pages.
 
 // Menu headings for the tools, in display order.
-export const TOOL_GROUPS = [["qr", "QR codes & links"], ["pdf", "PDF & documents"], ["image", "Photos & images"]];
+export const TOOL_GROUPS = [["qr", "QR, links & contacts"], ["pdf", "PDF & documents"], ["image", "Photos & images"]];
 
 export const TOOLS = [
   { href: "/tools/qr-generator", group: "qr", name: "QR Code Maker", blurb: "Free QR codes for links, WiFi, WhatsApp, UPI and more, with logo and styles." },
@@ -14,7 +14,7 @@ export const TOOLS = [
   { href: "/tools/photo-signature-resizer", group: "image", name: "Photo & Signature Resizer", blurb: "Resize a photo or signature to the exact KB and size an online form asks for." },
   { href: "/tools/compress-to-exact-size", group: "image", name: "Compress to Exact Size", blurb: "Make a picture or PDF smaller than, or exactly, 50 KB, 100 KB, 200 KB or any size." },
   { href: "/tools/ocr-to-excel-word", group: "pdf", name: "OCR to Excel & Word", blurb: "Turn a photo, scan or PDF into an Excel sheet or Word file. English and Hindi." },
-  { href: "/tools/vcf-maker", group: "pdf", name: "VCF Maker", blurb: "Turn a spreadsheet of contacts into one file you can import on any phone." },
+  { href: "/tools/vcf-maker", group: "qr", name: "VCF Maker", blurb: "Turn a spreadsheet of contacts into one file you can import on any phone." },
   { href: "/tools/pdf-maker", group: "pdf", name: "PDF Maker", blurb: "Combine pictures and text files into one PDF." },
 ];
 
