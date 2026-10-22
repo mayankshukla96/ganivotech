@@ -14,6 +14,7 @@ const footerLinks = {
     { href: "/services", label: "App Development" },
     { href: "/services", label: "Cloud Solutions" },
     { href: "/services", label: "IT Consulting" },
+    { href: "/blog/app-development-cost-in-jaipur", label: "App Cost Guide (Jaipur)" },
   ],
   "Free Tools": [
     { href: "/tools/qr-generator", label: "Free QR Code Generator" },

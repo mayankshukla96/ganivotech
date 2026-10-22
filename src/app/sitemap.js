@@ -34,6 +34,7 @@ export default function sitemap() {
     ["/extensions", "2026-10-04", 0.8],
     ...Object.keys(EXTENSIONS).map((s) => [`/extensions/${s}`, "2026-10-04", 0.7]),
     ["/blog", "2026-10-04", 0.6],
+    ["/blog/app-development-cost-in-jaipur", "2026-10-22", 0.8],
     ["/blog/qr-code", "2026-10-04", 0.7],
     ...Object.entries(GUIDES).map(([s, g]) => [`/blog/qr-code/${s}`, g.date, 0.7]),
     ["/blog/pdf-maker", "2026-10-04", 0.7],
