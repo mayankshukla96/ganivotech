@@ -41,6 +41,8 @@ export default function sitemap() {
     ...Object.entries(PDF_GUIDES).map(([s, g]) => [`/blog/pdf-maker/${s}`, g.date, 0.7]),
     ["/blog/vcf-maker", "2026-10-04", 0.7],
     ...Object.entries(VCF_GUIDES).map(([s, g]) => [`/blog/vcf-maker/${s}`, g.date, 0.7]),
+    ["/clients", "2026-10-25", 0.8],
+    ["/solutions/school-transport-erp", "2026-10-25", 0.9],
     ["/services", "2026-10-04", 0.6],
     ["/about", "2026-10-04", 0.5],
     ["/contact", "2026-10-04", 0.5],

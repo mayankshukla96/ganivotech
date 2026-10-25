@@ -4,52 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import ToolFinder from "@/components/ToolFinder";
-
-const services = [
-  {
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-      </svg>
-    ),
-    title: "Web Development",
-    description: "Modern, responsive websites and web applications built with cutting-edge technologies.",
-  },
-  {
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-      </svg>
-    ),
-    title: "App Development",
-    description: "Native and cross-platform mobile applications that deliver exceptional user experiences.",
-  },
-  {
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
-      </svg>
-    ),
-    title: "Cloud Solutions",
-    description: "Scalable cloud infrastructure, migration, and DevOps to power your business operations.",
-  },
-  {
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-      </svg>
-    ),
-    title: "IT Consulting",
-    description: "Strategic IT guidance to help you make informed technology decisions for your business.",
-  },
-];
-
-const stats = [
-  { value: "50+", label: "Projects Delivered" },
-  { value: "30+", label: "Happy Clients" },
-  { value: "5+", label: "Years Experience" },
-  { value: "24/7", label: "Support" },
-];
+import { PORTAL, SOLUTIONS } from "@/lib/it-solutions";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -69,101 +24,89 @@ export default function Home() {
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-primary/5 blur-3xl" />
           <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-secondary/5 blur-3xl" />
         </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 pb-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-28 pb-16 sm:pb-24">
           <motion.div className="max-w-3xl mx-auto text-center" initial="hidden" animate="visible">
             <motion.p variants={fadeUp} custom={0} className="text-sm font-semibold text-primary uppercase tracking-widest mb-4">
-              Free tools &bull; No signup &bull; Nothing uploaded
+              IT solutions for every business
             </motion.p>
             <motion.h1 variants={fadeUp} custom={1} className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-              Free tools for <span className="gradient-text">QR codes, PDFs and photos</span>
+              Your business is yours.{" "}
+              <span className="gradient-text">IT is ours.</span>
             </motion.h1>
-            <motion.p variants={fadeUp} custom={2} className="text-lg text-muted leading-relaxed mb-8 max-w-2xl mx-auto">
-              Make QR codes, short links and visiting cards, fix PDFs, and resize photos for exam forms. Everything runs in your browser, so your files stay on your device.
+            <motion.p variants={fadeUp} custom={2} className="text-lg text-muted leading-relaxed mb-10 max-w-2xl mx-auto">
+              We build the software, apps, websites and systems that run your business, and we stay with you after launch. You focus on your work; we take care of the technology.
             </motion.p>
             <motion.div variants={fadeUp} custom={3} className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/tools" className="px-8 py-3.5 rounded-xl gradient-bg-orange text-white font-semibold hover:opacity-90 transition-opacity">
-                Browse all free tools
+              <Link href="/contact" className="px-8 py-3.5 rounded-xl gradient-bg-orange text-white font-semibold hover:opacity-90 transition-opacity">
+                Tell us your problem
               </Link>
-              <Link href="/contact" className="px-8 py-3.5 rounded-xl border border-border font-semibold hover:border-primary hover:text-primary transition-colors">
-                Need software or an app built?
+              <Link href="/clients" className="px-8 py-3.5 rounded-xl border border-border font-semibold hover:border-primary hover:text-primary transition-colors">
+                Our work and clients
               </Link>
             </motion.div>
+            <motion.p variants={fadeUp} custom={4} className="mt-6 text-sm text-muted">
+              Already a client? <a href={PORTAL} rel="noopener" className="text-primary underline font-medium">Sign in to your portal</a>
+            </motion.p>
           </motion.div>
         </div>
       </section>
 
-      {/* Tools */}
-      <section className="pb-16 sm:pb-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ToolFinder />
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section className="border-y border-border bg-surface">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, i) => (
-              <motion.div
-                key={stat.label}
-                className="text-center"
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-              >
-                <div className="text-3xl sm:text-4xl font-bold gradient-text mb-1">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-muted">{stat.label}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Services */}
-      <section className="py-20 sm:py-28">
+      {/* IT solutions */}
+      <section className="py-16 sm:py-20 bg-surface border-y border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <p className="text-sm font-semibold text-primary uppercase tracking-widest mb-3">
-              What We Do
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              Our Services
-            </h2>
-            <p className="text-muted max-w-2xl mx-auto">
-              From concept to deployment, we deliver end-to-end IT solutions
-              tailored to your business needs.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {services.map((service, i) => (
-              <motion.div
-                key={service.title}
-                className="p-6 rounded-2xl border border-border bg-surface hover:border-primary/30 transition-colors group"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-              >
-                <div className="w-14 h-14 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-5 group-hover:bg-primary group-hover:text-white transition-colors">
-                  {service.icon}
-                </div>
-                <h3 className="text-lg font-semibold mb-2">{service.title}</h3>
-                <p className="text-sm text-muted leading-relaxed">
-                  {service.description}
-                </p>
-              </motion.div>
-            ))}
+          <div className="text-center mb-12">
+            <p className="text-sm font-semibold text-primary uppercase tracking-widest mb-3">What we do</p>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">IT solutions for different needs</h2>
+            <p className="text-muted max-w-2xl mx-auto">From a school&apos;s bus fleet to a shop&apos;s website, one team builds and looks after the technology.</p>
           </div>
+          <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {SOLUTIONS.map((s) => (
+              <li key={s.title}>
+                <Link href={s.href} className={`block h-full rounded-2xl border p-6 bg-background transition-colors hover:border-primary ${s.featured ? "border-primary" : "border-border"}`}>
+                  {s.featured && <span className="inline-block mb-3 px-2.5 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-semibold">Our own product</span>}
+                  <span className="block text-lg font-bold mb-2">{s.title}</span>
+                  <span className="block text-sm text-muted leading-relaxed">{s.text}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* Featured work */}
+      <section className="py-16 sm:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-10 items-center">
+            <div className="mx-auto w-full max-w-sm rounded-3xl overflow-hidden border border-border bg-white shadow-sm order-last lg:order-first">
+              <Image src="/solutions/school-transport-erp.jpg" alt="School Transport ERP with live bus tracking, fee management, parent and driver apps" width={1024} height={1536} className="w-full h-auto" />
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-primary uppercase tracking-widest mb-3">Our work</p>
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4">GoConnect: school transport on one platform</h2>
+              <p className="text-muted leading-relaxed mb-5">We built a transport ERP for schools. Teachers, drivers and the transport office stop phoning each other; parents see where the bus is; fees, routes and alerts run from one dashboard.</p>
+              <ul className="space-y-2 mb-8 text-muted">
+                {["Live bus tracking and route planning", "Fee management with online payments and reminders", "Parent app, driver app and admin dashboard", "Alerts by WhatsApp, SMS, email and app"].map((t) => (
+                  <li key={t} className="flex gap-2"><span className="text-primary font-bold" aria-hidden="true">&#10003;</span>{t}</li>
+                ))}
+              </ul>
+              <div className="flex flex-wrap gap-3">
+                <Link href="/solutions/school-transport-erp" className="px-6 py-3 rounded-xl gradient-bg-orange text-white font-semibold hover:opacity-90 transition-opacity">See School Transport ERP</Link>
+                <Link href="/clients" className="px-6 py-3 rounded-xl border border-border font-semibold hover:border-primary hover:text-primary transition-colors">All our work</Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Free tools */}
+      <section className="py-16 sm:py-20 bg-surface border-y border-border">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <p className="text-sm font-semibold text-primary uppercase tracking-widest mb-3">Free tools from our team</p>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">QR codes, PDFs and photos, free</h2>
+            <p className="text-muted max-w-2xl mx-auto">No signup and nothing uploaded: everything runs in your browser, so your files stay on your device.</p>
+          </div>
+          <ToolFinder />
         </div>
       </section>
 

@@ -7,6 +7,7 @@ const footerLinks = {
     { href: "/products", label: "Premium Products" },
     { href: "/services", label: "Services" },
     { href: "/blog", label: "Blog" },
+    { href: "/clients", label: "Our Clients" },
     { href: "/contact", label: "Contact" },
   ],
   Services: [
@@ -14,6 +15,7 @@ const footerLinks = {
     { href: "/services", label: "App Development" },
     { href: "/services", label: "Cloud Solutions" },
     { href: "/services", label: "IT Consulting" },
+    { href: "/solutions/school-transport-erp", label: "School Transport ERP" },
     { href: "/blog/app-development-cost-in-jaipur", label: "App Cost Guide (Jaipur)" },
   ],
   "Free Tools": [

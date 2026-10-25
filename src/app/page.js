@@ -1,8 +1,8 @@
 import HomePage from "@/components/HomePage";
 
-const TITLE = "Free QR, PDF & Photo Tools, plus Software Development | GanivoTech";
+const TITLE = "Ganivotech: IT Solutions, Software & Apps, plus Free Tools";
 const DESC =
-  "Free browser tools for QR codes, PDFs, passport and exam photos, short links and visiting cards. Ganivotech, Jaipur, also builds custom software, apps and websites.";
+  "Your business is yours, IT is ours. Ganivotech, Jaipur builds school transport ERP, custom software, apps and websites, and offers free QR, PDF and photo tools.";
 
 export const metadata = {
   title: { absolute: TITLE },
