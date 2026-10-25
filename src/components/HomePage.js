@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import HappyClients from "@/components/HappyClients";
 import ToolFinder from "@/components/ToolFinder";
 import { PORTAL, SOLUTIONS } from "@/lib/it-solutions";
 
@@ -97,6 +98,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <HappyClients />
 
       {/* Free tools */}
       <section className="py-16 sm:py-20 bg-surface border-y border-border">

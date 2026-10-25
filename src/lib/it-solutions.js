@@ -20,3 +20,10 @@ export const TRANSPORT_FEATURES = [
   ["Multi-channel communication", "WhatsApp, SMS, email and app."],
   ["Fleet monitoring", "Live tracking and reports."],
 ];
+
+// Happy clients shown on the home page and the Clients page. To add one, add a line here.
+// name: client name. what: what we built for them. href: where to read more (optional).
+export const CLIENTS = [
+  { name: "GoConnect", tag: "Transport app", what: "School transport ERP: live bus tracking, route planning, fee management, parent and driver apps.", href: "/solutions/school-transport-erp" },
+  { name: "Aravali Sport", tag: "Sports", what: "A sports business, launching soon.", href: "https://aravalisport.com", external: true },
+];

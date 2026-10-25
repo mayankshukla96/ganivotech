@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import HappyClients from "@/components/HappyClients";
 import { Breadcrumbs } from "@/components/seo";
 import { PORTAL, SOLUTIONS } from "@/lib/it-solutions";
 
@@ -40,6 +41,8 @@ export default function Page() {
             </div>
           </div>
         </div>
+
+        <div className="-mx-4 sm:-mx-6 lg:-mx-8 mb-6"><HappyClients /></div>
 
         <h2 className="text-2xl sm:text-3xl font-bold mb-6">Featured: GoConnect School Transport</h2>
         <div className="grid lg:grid-cols-[1fr_1.2fr] gap-8 items-center rounded-3xl border border-border bg-surface p-6 sm:p-8 mb-14">
