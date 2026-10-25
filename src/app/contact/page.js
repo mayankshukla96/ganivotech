@@ -11,8 +11,8 @@ const contactInfo = [
       </svg>
     ),
     label: "Email",
-    value: "hello@ganivotech.com",
-    href: "mailto:hello@ganivotech.com",
+    value: "info@ganivotech.com",
+    href: "mailto:info@ganivotech.com",
   },
   {
     icon: (
@@ -21,8 +21,8 @@ const contactInfo = [
       </svg>
     ),
     label: "Phone",
-    value: "+91 98874 02309",
-    href: "tel:+919887402309",
+    value: "+91 92521 07911",
+    href: "tel:+919252107911",
   },
   {
     icon: (

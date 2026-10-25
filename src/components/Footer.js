@@ -54,14 +54,18 @@ export default function Footer() {
                 <span className="text-secondary">tech</span>
               </span>
             </Link>
+            <p className="text-sm font-semibold text-foreground mb-1">Your Business, Our IT Solutions</p>
             <p className="text-sm text-muted leading-relaxed">
-              Empowering businesses with innovative IT solutions. Your trusted
-              technology partner for growth and digital transformation.
+              Your trusted technology partner for growth and digital transformation.
             </p>
             <address className="mt-4 text-sm text-muted leading-relaxed not-italic">
               C58, Garden City, Jagatpura, Jaipur, Rajasthan, India
               <br />
-              <a href="tel:+919887402309" className="hover:text-primary transition-colors">+91 98874 02309</a>
+              <a href="tel:+919252107911" className="hover:text-primary transition-colors">+91 92521 07911</a>
+              <br />
+              <a href="mailto:info@ganivotech.com" className="hover:text-primary transition-colors">info@ganivotech.com</a>
+              <br />
+              <a href="https://ganivotech.com" className="hover:text-primary transition-colors">ganivotech.com</a>
             </address>
           </div>
 

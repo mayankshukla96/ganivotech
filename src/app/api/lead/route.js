@@ -14,7 +14,7 @@ export async function POST(req) {
   const fail = (error, status) => Response.json({ ok: false, error }, { status });
   try {
     if (!sameSite(req.headers.get("origin"))) return fail("Not allowed.", 403);
-    if (!dbConfigured()) return fail("This form is not available right now. Please email hello@ganivotech.com.", 503);
+    if (!dbConfigured()) return fail("This form is not available right now. Please email info@ganivotech.com.", 503);
 
     const raw = await req.text();
     if (raw.length > 6000) return fail("That message is too long.", 413);
@@ -58,6 +58,6 @@ export async function POST(req) {
     }
     return Response.json({ ok: true });
   } catch {
-    return fail("Could not send. Please try again, or email hello@ganivotech.com.", 500);
+    return fail("Could not send. Please try again, or email info@ganivotech.com.", 500);
   }
 }

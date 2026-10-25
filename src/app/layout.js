@@ -31,7 +31,7 @@ export const metadata = {
 const orgSchema = [
   {
     "@context": "https://schema.org", "@type": "Organization", name: "Ganivotech", url: SITE, logo: `${SITE}/logo.jpg`,
-    telephone: "+919887402309", email: "hello@ganivotech.com",
+    telephone: "+919252107911", email: "info@ganivotech.com", slogan: "Your Business, Our IT Solutions",
     address: { "@type": "PostalAddress", streetAddress: "C58, Garden City, Jagatpura", addressLocality: "Jaipur", addressRegion: "Rajasthan", addressCountry: "IN" },
   },
   { "@context": "https://schema.org", "@type": "WebSite", name: "Ganivotech", url: SITE },

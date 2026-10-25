@@ -108,7 +108,7 @@ export default function Page() {
           {SOURCES.map(([t, u]) => <li key={u}><a href={u} rel="noopener noreferrer nofollow" className="text-primary underline">{t}</a></li>)}
         </ul>
 
-        <p className="text-sm text-muted">Want a price for your idea? <Link href="/contact" className="text-primary underline">Tell us what you need</Link> or <a href="https://wa.me/919887402309?text=Hi%2C%20I%20read%20your%20app%20cost%20guide%20and%20want%20a%20quote." className="text-primary underline">message us on WhatsApp</a>.</p>
+        <p className="text-sm text-muted">Want a price for your idea? <Link href="/contact" className="text-primary underline">Tell us what you need</Link> or <a href="https://wa.me/919252107911?text=Hi%2C%20I%20read%20your%20app%20cost%20guide%20and%20want%20a%20quote." className="text-primary underline">message us on WhatsApp</a>.</p>
       </div>
     </article>
   );
