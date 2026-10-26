@@ -1,171 +1,47 @@
-"use client";
-
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { GUIDES } from "@/lib/qr-content";
+import { PDF_GUIDES } from "@/lib/pdf-content";
+import { VCF_GUIDES } from "@/lib/vcf-content";
 
-const posts = [
-  {
-    category: "Security",
-    title: "10 Essential Cybersecurity Tips for Small Businesses",
-    excerpt: "Protect your business from cyber threats with these practical security measures that every small business should implement today.",
-    date: "Sep 25, 2026",
-    readTime: "5 min read",
-  },
-  {
-    category: "Cloud",
-    title: "Getting Started with Cloud Computing: A Beginner's Guide",
-    excerpt: "Learn the fundamentals of cloud computing and how it can transform your business operations and reduce IT costs.",
-    date: "Sep 20, 2026",
-    readTime: "7 min read",
-  },
-  {
-    category: "Development",
-    title: "Why Next.js is the Best Framework for Business Websites",
-    excerpt: "Discover why top companies choose Next.js for their web applications and how it can benefit your business.",
-    date: "Sep 15, 2026",
-    readTime: "6 min read",
-  },
-  {
-    category: "Tips",
-    title: "5 Ways to Speed Up Your Website Performance",
-    excerpt: "Simple yet effective techniques to make your website load faster and improve user experience and SEO rankings.",
-    date: "Sep 10, 2026",
-    readTime: "4 min read",
-  },
-  {
-    category: "DevOps",
-    title: "Introduction to CI/CD: Automate Your Deployments",
-    excerpt: "Learn how continuous integration and delivery can streamline your development workflow and reduce deployment risks.",
-    date: "Sep 5, 2026",
-    readTime: "8 min read",
-  },
-  {
-    category: "Tips",
-    title: "Choosing the Right Tech Stack for Your Startup",
-    excerpt: "A comprehensive guide to selecting the right technologies for your startup based on your goals, budget, and timeline.",
-    date: "Sep 1, 2026",
-    readTime: "6 min read",
-  },
+const date = (d) => new Date(d).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
+
+// Every card on this page is a real article. New guides appear here automatically.
+const GROUPS = [
+  { name: "Software and apps", href: null, items: [{ href: "/blog/app-development-cost-in-jaipur", title: "App Development Cost in Jaipur (2026)", description: "What a website, app or custom software costs, what changes the price, and how to compare quotes.", date: "2026-10-22" }] },
+  { name: "QR codes", href: "/blog/qr-code", items: Object.entries(GUIDES).map(([s, g]) => ({ href: `/blog/qr-code/${s}`, ...g })) },
+  { name: "PDF", href: "/blog/pdf-maker", items: Object.entries(PDF_GUIDES).map(([s, g]) => ({ href: `/blog/pdf-maker/${s}`, ...g })) },
+  { name: "Contacts and VCF files", href: "/blog/vcf-maker", items: Object.entries(VCF_GUIDES).map(([s, g]) => ({ href: `/blog/vcf-maker/${s}`, ...g })) },
 ];
-
-const categories = ["All", "Security", "Cloud", "Development", "Tips", "DevOps"];
 
 export default function Blog() {
   return (
-    <>
-      {/* Hero */}
-      <section className="py-20 sm:py-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="max-w-3xl mx-auto text-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            <p className="text-sm font-semibold text-primary uppercase tracking-widest mb-3">
-              Blog & IT Tips
-            </p>
-            <h1 className="text-4xl sm:text-5xl font-bold mb-6">
-              Insights & <span className="gradient-text">IT Tips</span>
-            </h1>
-            <p className="text-lg text-muted leading-relaxed">
-              Stay updated with the latest technology trends, practical IT tips,
-              and expert insights from the Ganivotech team.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Categories */}
-      <section className="pb-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-center gap-2">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  cat === "All"
-                    ? "gradient-bg text-white"
-                    : "bg-surface border border-border text-muted hover:text-primary hover:border-primary/30"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Posts Grid */}
-      <section className="pb-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {posts.map((post, i) => (
-              <motion.article
-                key={post.title}
-                className="rounded-2xl border border-border bg-surface overflow-hidden hover:border-primary/30 transition-colors group"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-              >
-                <div className="h-48 gradient-bg opacity-80 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <span className="text-white/50 text-6xl font-bold">
-                    {post.category[0]}
-                  </span>
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="text-xs font-semibold text-primary bg-primary/10 px-2.5 py-1 rounded-md">
-                      {post.category}
-                    </span>
-                    <span className="text-xs text-muted">{post.readTime}</span>
-                  </div>
-                  <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors line-clamp-2">
-                    {post.title}
-                  </h3>
-                  <p className="text-sm text-muted leading-relaxed mb-4 line-clamp-3">
-                    {post.excerpt}
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs text-muted-light">{post.date}</span>
-                    <span className="text-sm font-medium text-primary group-hover:underline">
-                      Read More &rarr;
-                    </span>
-                  </div>
-                </div>
-              </motion.article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Newsletter */}
-      <section className="py-20 bg-surface">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="max-w-2xl mx-auto text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl font-bold mb-4">Stay in the Loop</h2>
-            <p className="text-muted mb-8">
-              Subscribe to our newsletter for the latest IT tips, tutorials, and
-              industry insights delivered straight to your inbox.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-xl border border-border bg-background text-sm focus:outline-none focus:border-primary transition-colors"
-              />
-              <button className="px-6 py-3 rounded-xl gradient-bg-orange text-white text-sm font-semibold hover:opacity-90 transition-opacity">
-                Subscribe
-              </button>
+    <section className="py-16 sm:py-24">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <header className="max-w-3xl mx-auto text-center mb-14">
+          <p className="text-sm font-semibold text-primary uppercase tracking-widest mb-3">Guides</p>
+          <h1 className="text-4xl sm:text-5xl font-bold mb-5">Guides and <span className="gradient-text">how-tos</span></h1>
+          <p className="text-lg text-muted leading-relaxed">Plain-language guides from the Ganivotech team: how to use our free tools, and what software and apps cost.</p>
+        </header>
+        {GROUPS.map((g) => (
+          <div key={g.name} className="mb-12">
+            <div className="flex items-baseline justify-between gap-4 mb-5">
+              <h2 className="text-2xl font-bold">{g.name}</h2>
+              {g.href && <Link href={g.href} className="text-sm font-semibold text-primary hover:underline">All {g.name} guides &rarr;</Link>}
             </div>
-          </motion.div>
-        </div>
-      </section>
-    </>
+            <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {g.items.map((a) => (
+                <li key={a.href}>
+                  <Link href={a.href} className="flex flex-col h-full rounded-2xl border border-border bg-surface p-6 hover:border-primary transition-colors">
+                    <span className="font-bold mb-2 leading-snug">{a.title}</span>
+                    <span className="text-sm text-muted leading-relaxed mb-4">{a.description}</span>
+                    <span className="mt-auto text-xs text-muted">{date(a.date)}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }

@@ -1,24 +1,7 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
-
-const team = [
-  {
-    name: "Founder",
-    role: "CEO & Lead Developer",
-    bio: "Passionate about using technology to solve real-world business problems.",
-  },
-  {
-    name: "Tech Lead",
-    role: "Full-Stack Developer",
-    bio: "Expert in building scalable web and mobile applications.",
-  },
-  {
-    name: "Designer",
-    role: "UI/UX Designer",
-    bio: "Creating intuitive and beautiful user experiences.",
-  },
-];
 
 const values = [
   {
@@ -165,45 +148,14 @@ export default function About() {
         </div>
       </section>
 
-      {/* Team */}
-      <section className="py-20 bg-surface">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <p className="text-sm font-semibold text-primary uppercase tracking-widest mb-3">
-              Our Team
-            </p>
-            <h2 className="text-3xl font-bold mb-4">Meet the People Behind Ganivotech</h2>
-            <p className="text-muted max-w-2xl mx-auto">
-              A dedicated team of professionals passionate about technology and
-              committed to your success.
-            </p>
-          </motion.div>
-
-          <div className="grid sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            {team.map((member, i) => (
-              <motion.div
-                key={member.role}
-                className="text-center p-6 rounded-2xl border border-border bg-background"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-              >
-                <div className="w-20 h-20 mx-auto mb-4 rounded-full gradient-bg flex items-center justify-center">
-                  <span className="text-white text-2xl font-bold">
-                    {member.name[0]}
-                  </span>
-                </div>
-                <h3 className="font-semibold mb-1">{member.name}</h3>
-                <p className="text-sm text-primary mb-3">{member.role}</p>
-                <p className="text-xs text-muted">{member.bio}</p>
-              </motion.div>
-            ))}
+      <section className="py-20 bg-surface border-t border-border">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-sm font-semibold text-primary uppercase tracking-widest mb-3">Our work</p>
+          <h2 className="text-3xl font-bold mb-4">See what we have built</h2>
+          <p className="text-muted mb-8">Your business is yours. The IT is ours. See our school transport platform and our clients, or tell us what you need.</p>
+          <div className="flex flex-wrap justify-center gap-3">
+            <Link href="/clients" className="px-6 py-3 rounded-xl gradient-bg-orange text-white font-semibold hover:opacity-90 transition-opacity">Our work and clients</Link>
+            <Link href="/contact" className="px-6 py-3 rounded-xl border border-border font-semibold hover:border-primary hover:text-primary transition-colors">Talk to us</Link>
           </div>
         </div>
       </section>
