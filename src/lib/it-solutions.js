@@ -25,5 +25,5 @@ export const TRANSPORT_FEATURES = [
 // name: client name. what: what we built for them. href: where to read more (optional).
 export const CLIENTS = [
   { name: "GoConnect", tag: "Transport app", what: "School transport ERP: live bus tracking, route planning, fee management, parent and driver apps.", href: "/solutions/school-transport-erp" },
-  { name: "Aravali Sport", tag: "Sports", what: "A sports business, launching soon.", href: "https://aravalisport.com", external: true },
+  { name: "Aravali Sports Academy", tag: "Sports academy, Jaipur", what: "Website with admissions, programs, gallery and an admin login for a sports coaching academy in Jaipur.", href: "https://www.aravalisport.com", external: true },
 ];
